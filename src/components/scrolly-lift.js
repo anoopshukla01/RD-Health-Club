@@ -221,6 +221,48 @@ export function initScrollyLift() {
   updateLift();
   animLoop();
 
+  // Mobile: touch drag on hero section scrubs the barbell animation
+  // (finger drag up = scroll down = lift progress increases)
+  let heroTouchStartY = 0;
+  let heroTouchBaseProgress = 0;
+  const heroWrap = document.querySelector('.hero-scroll-wrapper');
+  if (heroWrap) {
+    heroWrap.addEventListener('touchstart', (e) => {
+      heroTouchStartY = e.touches[0].clientY;
+      heroTouchBaseProgress = currentScrollProgress;
+    }, { passive: true });
+
+    heroWrap.addEventListener('touchmove', (e) => {
+      const dy = heroTouchStartY - e.touches[0].clientY; // positive = drag up
+      const sensitivity = 0.0012; // tune: how much drag per pixel
+      const newProgress = Math.max(0, Math.min(1, heroTouchBaseProgress + dy * sensitivity));
+      currentScrollProgress = newProgress;
+
+      const character3D = getCharacter3DInstance();
+      if (character3D) character3D.setScrollProgress(newProgress);
+
+      // Drive all visual states from touch as well
+      const p = newProgress;
+      if (poseDown && poseUp) {
+        poseDown.style.opacity = Math.max(0, 1 - p * 1.8).toFixed(3);
+        poseDown.style.transform = `translate3d(0, ${(p * -25).toFixed(1)}px, 0) scale(${(1 + p * 0.03).toFixed(3)})`;
+        poseUp.style.opacity = Math.min(1, Math.max(0, (p - 0.2) / 0.6)).toFixed(3);
+        poseUp.style.transform = `translate3d(0, ${((1 - p) * 20).toFixed(1)}px, 0) scale(${(1.02 - (1 - p) * 0.02).toFixed(3)})`;
+      }
+      if (haloRing) {
+        const haloOpacity = Math.min(1, Math.max(0, (p - 0.3) / 0.55));
+        haloRing.style.opacity = haloOpacity.toFixed(3);
+        haloRing.style.transform = `translate(-50%, -50%) scale(${(0.7 + haloOpacity * 0.35).toFixed(3)})`;
+      }
+      if (copyInitial && copyLifted) {
+        copyInitial.style.opacity = Math.max(0, 1 - p * 2.2).toFixed(3);
+        copyLifted.style.opacity = Math.min(1, Math.max(0, (p - 0.4) * 2.0)).toFixed(3);
+      }
+      if (hudFill) hudFill.style.width = `${Math.round(p * 100)}%`;
+      if (hudPercent) hudPercent.textContent = `${Math.round(p * 100)}%`;
+    }, { passive: true });
+  }
+
   // Floating chalk dust & ember sparks canvas
   initDustCanvas();
 }
@@ -238,8 +280,8 @@ function initDustCanvas() {
     height = canvas.height = window.innerHeight;
   });
 
-  const particles = [];
-  const count = 45;
+  const isMobile = window.innerWidth <= 768;
+  const count = isMobile ? 22 : 45;
 
   for (let i = 0; i < count; i++) {
     particles.push({
