@@ -55,7 +55,11 @@ export function initEquipment() {
   const imgEl = container.querySelector('.equipment-img');
   const progressBar = container.querySelector('.equipment-progress-bar');
 
+  let currentCategoryIdx = 0;
+
   function selectCategory(index) {
+    if (index < 0 || index >= equipmentData.length) return;
+    currentCategoryIdx = index;
     const item = equipmentData[index];
     if (!item) return;
 
@@ -92,6 +96,38 @@ export function initEquipment() {
   tabBtns.forEach((btn, idx) => {
     btn.addEventListener('click', () => selectCategory(idx));
   });
+
+  // Touch swipe support for mobile sideways swiping
+  const panel = container.querySelector('.equipment-showcase-panel');
+  if (panel) {
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    panel.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    panel.addEventListener('touchend', (e) => {
+      const touchEndX = e.changedTouches[0].screenX;
+      const touchEndY = e.changedTouches[0].screenY;
+      const diffX = touchEndX - touchStartX;
+      const diffY = touchEndY - touchStartY;
+
+      // Only trigger on intentional horizontal swipes (> 40px) that dominate vertical scrolling
+      if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+        if (diffX < 0) {
+          // Swipe left -> Next category
+          const nextIdx = (currentCategoryIdx + 1) % equipmentData.length;
+          selectCategory(nextIdx);
+        } else {
+          // Swipe right -> Prev category
+          const prevIdx = (currentCategoryIdx - 1 + equipmentData.length) % equipmentData.length;
+          selectCategory(prevIdx);
+        }
+      }
+    }, { passive: true });
+  }
 
   selectCategory(0);
 }
