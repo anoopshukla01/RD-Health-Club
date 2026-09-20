@@ -7,7 +7,7 @@ import { initStatsCounter } from './components/stats.js';
 import { initSignatureCharacter } from './components/signature-character.js';
 import { initMotivation } from './components/motivation.js';
 import { initModals } from './components/modal.js';
-import { initCMSSync, addInquiry } from './cms-sync.js';
+import { initCMSSync, addInquiry, getCMSData } from './cms-sync.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize CMS synchronization first
@@ -41,8 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
         `Hello Mr. R.D. Singh,\nI would like to inquire about RD Health Club.\nName: ${name}\nPhone: ${phone}\nInterest: ${interest}\nMessage: ${msg}`
       );
 
-      // Open WhatsApp chat directly
-      window.open(`https://api.whatsapp.com/send?phone=919876543210&text=${text}`, '_blank');
+      // Open WhatsApp chat directly using CMS contact phone
+      const cms = getCMSData();
+      const cleanWa = (cms.contact?.whatsapp || cms.contact?.phone || '919876543210').replace(/[^0-9]/g, '');
+      window.open(`https://api.whatsapp.com/send?phone=${cleanWa}&text=${text}`, '_blank');
     });
   }
 

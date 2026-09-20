@@ -234,14 +234,14 @@ export function initScrollyLift() {
 
     heroWrap.addEventListener('touchmove', (e) => {
       const dy = heroTouchStartY - e.touches[0].clientY; // positive = drag up
-      const sensitivity = 0.0012; // tune: how much drag per pixel
+      const sensitivity = 0.0015; // smooth mobile drag scrubbing
       const newProgress = Math.max(0, Math.min(1, heroTouchBaseProgress + dy * sensitivity));
       currentScrollProgress = newProgress;
 
       const character3D = getCharacter3DInstance();
       if (character3D) character3D.setScrollProgress(newProgress);
 
-      // Drive all visual states from touch as well
+      // Drive all visual states from touch synchronously
       const p = newProgress;
       if (poseDown && poseUp) {
         poseDown.style.opacity = Math.max(0, 1 - p * 1.8).toFixed(3);
@@ -255,11 +255,48 @@ export function initScrollyLift() {
         haloRing.style.transform = `translate(-50%, -50%) scale(${(0.7 + haloOpacity * 0.35).toFixed(3)})`;
       }
       if (copyInitial && copyLifted) {
-        copyInitial.style.opacity = Math.max(0, 1 - p * 2.2).toFixed(3);
-        copyLifted.style.opacity = Math.min(1, Math.max(0, (p - 0.4) * 2.0)).toFixed(3);
+        const initOp = Math.max(0, 1 - p * 2.2);
+        const liftOp = Math.min(1, Math.max(0, (p - 0.4) * 2.0));
+        copyInitial.style.opacity = initOp.toFixed(3);
+        copyInitial.style.pointerEvents = p < 0.4 ? 'auto' : 'none';
+        copyLifted.style.opacity = liftOp.toFixed(3);
+        copyLifted.style.pointerEvents = p >= 0.4 ? 'auto' : 'none';
       }
-      if (hudFill) hudFill.style.width = `${Math.round(p * 100)}%`;
-      if (hudPercent) hudPercent.textContent = `${Math.round(p * 100)}%`;
+      if (scrollPrompt) {
+        const promptOp = Math.max(0, 1 - p * 3.5);
+        scrollPrompt.style.opacity = promptOp.toFixed(3);
+      }
+      if (statsBar) {
+        const statsP = Math.min(1, Math.max(0, (p - 0.55) / 0.35));
+        statsBar.style.opacity = statsP.toFixed(3);
+        statsBar.style.transform = `translate(-50%, ${((1 - statsP) * 25).toFixed(1)}px)`;
+        statsBar.style.pointerEvents = statsP > 0.5 ? 'auto' : 'none';
+      }
+      const pct = Math.round(p * 100);
+      if (hudFill) hudFill.style.width = `${pct}%`;
+      if (hudPercent) hudPercent.textContent = `${pct}%`;
+      if (hudStatus) {
+        if (pct >= 85) {
+          hudStatus.textContent = 'REP LOCKED! MAXIMUM EFFORT';
+          hudStatus.style.color = '#ff1f24';
+          if (!hasPlayedClink) {
+            playPlateClink();
+            hasPlayedClink = true;
+          }
+        } else if (pct >= 45) {
+          hudStatus.textContent = 'EXPLODING THROUGH POWER PEAK';
+          hudStatus.style.color = '#ff6b6b';
+          hasPlayedClink = false;
+        } else if (pct > 5) {
+          hudStatus.textContent = 'ENGAGING CORE & VASCULAR DRIVE';
+          hudStatus.style.color = '#ffffff';
+          hasPlayedClink = false;
+        } else {
+          hudStatus.textContent = 'READY TO LIFT — SCROLL DOWN';
+          hudStatus.style.color = 'var(--red-primary)';
+          hasPlayedClink = false;
+        }
+      }
     }, { passive: true });
   }
 
@@ -282,6 +319,7 @@ function initDustCanvas() {
 
   const isMobile = window.innerWidth <= 768;
   const count = isMobile ? 22 : 45;
+  const particles = [];
 
   for (let i = 0; i < count; i++) {
     particles.push({

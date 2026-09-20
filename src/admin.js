@@ -892,24 +892,59 @@ class AdminController {
   }
 
   // =========================================================================
-  // HELPER: File to Base64 Uploader
+  // HELPER: File to Compressed Base64 Uploader
   // =========================================================================
   setupImageUploader(inputId, onComplete) {
     const input = document.getElementById(inputId);
     if (!input) return;
-    input.addEventListener('change', (e) => {
+    input.addEventListener('change', async (e) => {
       const file = e.target.files?.[0];
       if (!file) return;
 
-      // Ensure reasonable size (under 8MB)
-      if (file.size > 8 * 1024 * 1024) {
-        alert('Image size exceeds 8MB. Please select a smaller photo.');
-        return;
+      this.showToast('Optimizing & compressing image...');
+      try {
+        const compressedBase64 = await this.compressImage(file);
+        onComplete(compressedBase64);
+      } catch (err) {
+        console.error('Image processing error:', err);
+        alert('Could not process this photo. Please try a standard JPEG, PNG or WebP file.');
       }
+    });
+  }
 
+  compressImage(file, maxDimension = 1200, quality = 0.82) {
+    return new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.onload = (evt) => {
-        onComplete(evt.target.result);
+      reader.onerror = reject;
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onerror = reject;
+        img.onload = () => {
+          let { width, height } = img;
+          if (width > maxDimension || height > maxDimension) {
+            if (width > height) {
+              height = Math.round((height * maxDimension) / width);
+              width = maxDimension;
+            } else {
+              width = Math.round((width * maxDimension) / height);
+              height = maxDimension;
+            }
+          }
+
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+
+          // Test webp support, fallback to jpeg
+          let dataUrl = canvas.toDataURL('image/webp', quality);
+          if (!dataUrl || !dataUrl.startsWith('data:image/webp')) {
+            dataUrl = canvas.toDataURL('image/jpeg', quality);
+          }
+          resolve(dataUrl);
+        };
+        img.src = e.target.result;
       };
       reader.readAsDataURL(file);
     });
@@ -918,9 +953,10 @@ class AdminController {
   // =========================================================================
   // TOAST NOTIFICATIONS
   // =========================================================================
-  showToast(message) {
+  showToast(message, isError = false) {
     if (!this.toast) return;
     this.toast.textContent = message;
+    this.toast.style.background = isError ? 'var(--admin-red, #ff1f24)' : '';
     this.toast.classList.add('show');
     clearTimeout(this._toastTimer);
     this._toastTimer = setTimeout(() => {

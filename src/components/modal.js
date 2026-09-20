@@ -1,5 +1,5 @@
 import confetti from 'canvas-confetti';
-import { addInquiry } from '../cms-sync.js';
+import { addInquiry, getCMSData } from '../cms-sync.js';
 
 export function initModals() {
   const dialog = document.querySelector('dialog.app-modal');
@@ -69,7 +69,9 @@ export function initModals() {
         const msg = encodeURIComponent(`Hi Mr. R.D. Singh, I want to enroll in RD Health Club for "${plan}". My Name: ${name}, Phone: ${phone}.`);
         const waLink = modalSuccess.querySelector('.whatsapp-direct-link');
         if (waLink) {
-          waLink.href = `https://api.whatsapp.com/send?phone=919876543210&text=${msg}`;
+          const cms = getCMSData();
+          const cleanWa = (cms.contact?.whatsapp || cms.contact?.phone || '919876543210').replace(/[^0-9]/g, '');
+          waLink.href = `https://api.whatsapp.com/send?phone=${cleanWa}&text=${msg}`;
         }
       }
     });

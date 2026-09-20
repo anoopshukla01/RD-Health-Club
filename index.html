@@ -16,10 +16,10 @@
   <header class="navbar">
     <div class="container navbar-container">
       <a href="#hero" class="brand-link" aria-label="RD Health Club Home">
-        <img src="/assets/logo.png" alt="RD Health Club Logo" class="nav-logo-badge" />
+        <img src="/assets/logo.png" alt="RD Health Club Logo" class="nav-logo-badge cms-brand-logo" />
         <div class="brand-text-block">
-          <span class="brand-name">RD HEALTH CLUB</span>
-          <span class="brand-motto">STRENGTH IN MOTION</span>
+          <span class="brand-name cms-brand-name">RD HEALTH CLUB</span>
+          <span class="brand-motto cms-brand-motto">STRENGTH IN MOTION</span>
         </div>
       </a>
 
@@ -127,12 +127,12 @@
                   <img 
                     src="/assets/hero_athlete_ready.jpg" 
                     alt="RD Health Club Elite Athlete - Deadlift Setup" 
-                    class="hero-athlete-photo lifter-pose-down" 
+                    class="hero-athlete-photo lifter-pose-down cms-hero-athlete-down" 
                   />
                   <img 
                     src="/assets/hero_athlete_lifted.jpg" 
                     alt="RD Health Club Elite Athlete - Locked Out Rep" 
-                    class="hero-athlete-photo lifter-pose-up" 
+                    class="hero-athlete-photo lifter-pose-up cms-hero-athlete" 
                   />
                   <div class="hero-athlete-atmosphere"></div>
                 </div>
@@ -182,22 +182,22 @@
 
         <!-- BOTTOM STATS ROW (Scroll-revealed at peak lift) -->
         <div class="hero-cinema-stats-bar">
-          <div class="cinema-stat-item">
+          <div class="cinema-stat-item cms-hero-stat-card">
             <div class="cinema-stat-val">1K+</div>
             <div class="cinema-stat-lbl">MEMBERS</div>
           </div>
           <div class="cinema-stat-divider"></div>
-          <div class="cinema-stat-item">
+          <div class="cinema-stat-item cms-hero-stat-card">
             <div class="cinema-stat-val">50+</div>
             <div class="cinema-stat-lbl">TRAINERS</div>
           </div>
           <div class="cinema-stat-divider"></div>
-          <div class="cinema-stat-item">
+          <div class="cinema-stat-item cms-hero-stat-card">
             <div class="cinema-stat-val">5★</div>
             <div class="cinema-stat-lbl">RATING</div>
           </div>
           <div class="cinema-stat-divider"></div>
-          <div class="cinema-stat-item">
+          <div class="cinema-stat-item cms-hero-stat-card">
             <div class="cinema-stat-val">100%</div>
             <div class="cinema-stat-lbl">RESULTS</div>
           </div>
@@ -225,10 +225,12 @@
           <div class="about-narrative">
             <span class="section-tag">About The Gym</span>
             <h2 class="section-heading">YOUR STRENGTH.<br/><span class="red-text">YOUR JOURNEY.</span></h2>
-            <p class="about-statement">A culture of discipline, progressive overload, and relentless transformation.</p>
-            <p class="about-bio">
+            <blockquote class="about-statement cms-about-quote" style="font-style: italic; border-left: 3px solid var(--red-primary); padding-left: 14px; margin: 0 0 10px;">A culture of discipline, progressive overload, and relentless transformation.</blockquote>
+            <p class="about-author cms-about-author" style="color: var(--red-primary); font-size: 0.85rem; font-family: var(--font-mono); margin-bottom: 14px;"></p>
+            <p class="about-bio cms-about-desc1">
               Founded and mentored by veteran personal trainer <strong>Mr. R.D. Singh</strong>, <strong>RD Health Club</strong> is Gorakhpur's benchmark training facility located in Indira Nagar (Rail Vihar Colony Phase 3rd). Backed by an exceptional <strong>4.6★ Google rating from 53+ verified reviews</strong>, we provide a focused, fully air-conditioned iron haven equipped for athletes, lifters, and everyday individuals striving for peak vitality.
             </p>
+            <p class="cms-about-desc2" style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.75; margin-top: 8px;"></p>
 
             <div class="about-features-grid">
               <div class="feature-card">
@@ -780,7 +782,7 @@
               </div>
             </div>
 
-            <!-- Owner & Instagram Card -->
+            <!-- Owner, Phone & Social Card -->
             <div class="contact-detail-card">
               <div class="contact-icon-box">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -790,10 +792,11 @@
                 </svg>
               </div>
               <div>
-                <h3 class="contact-card-title">Owner & Social</h3>
+                <h3 class="contact-card-title">Owner &amp; Contact</h3>
                 <p class="contact-card-text">
-                  Owner & Master Trainer: <strong>Mr. R.D. Singh</strong><br />
-                  Official Instagram: <strong>@rdhealthclub</strong> (333 followers)
+                  Owner &amp; Master Trainer: <strong>Mr. R.D. Singh</strong><br />
+                  📞 <a href="tel:" class="cms-contact-phone" style="color: var(--text-main); text-decoration: none; font-weight: 600;">+91 98765 43210</a><br />
+                  ✉️ <a href="mailto:" class="cms-contact-email" style="color: var(--text-muted); font-size: 0.9rem; text-decoration: none;">contact@rdhealthclub.com</a>
                 </p>
                 <a href="https://www.instagram.com/rdhealthclub/" target="_blank" rel="noopener" class="social-pill-link">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
@@ -879,10 +882,10 @@
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <img src="/assets/logo.png" alt="RD Health Club Emblem" class="footer-logo" />
+          <img src="/assets/logo.png" alt="RD Health Club Emblem" class="footer-logo cms-brand-logo" />
           <div>
-            <h4 style="font-size: 1.5rem; color: #ffffff; letter-spacing: 0.05em;">RD HEALTH CLUB</h4>
-            <p style="font-size: 0.82rem; color: var(--red-primary); font-family: var(--font-mono);">BE STRONGER THAN EXCUSES</p>
+            <h4 class="cms-brand-name" style="font-size: 1.5rem; color: #ffffff; letter-spacing: 0.05em;">RD HEALTH CLUB</h4>
+            <p class="cms-brand-motto" style="font-size: 0.82rem; color: var(--red-primary); font-family: var(--font-mono);">BE STRONGER THAN EXCUSES</p>
           </div>
         </div>
 

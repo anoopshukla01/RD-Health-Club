@@ -1,4 +1,4 @@
-export const equipmentData = [
+export const defaultEquipmentData = [
   {
     id: 'strength',
     name: 'STRENGTH — POWER RACK',
@@ -43,11 +43,33 @@ export const equipmentData = [
   }
 ];
 
+let activeEquipmentList = [...defaultEquipmentData];
+
+export function renderEquipmentFromCMS(facilities) {
+  if (Array.isArray(facilities) && facilities.length > 0) {
+    activeEquipmentList = facilities.map((f, i) => ({
+      id: f.id || `equip-${i}`,
+      name: (f.name || 'EQUIPMENT').toUpperCase(),
+      tag: 'World-Class Hardware',
+      title: f.name || 'Equipment Station',
+      description: f.desc || 'Engineered for maximal performance and ergonomic safety.',
+      specs: [
+        'Commercial Grade High-Tensile Steel',
+        'Precision Biomechanical Alignment',
+        'Climate Controlled Lifting Environment',
+        'Direct Guidance by Coach R.D. Singh'
+      ],
+      image: f.image || '/assets/equipment_weights.jpg'
+    }));
+  }
+  initEquipment();
+}
+
 export function initEquipment() {
   const container = document.querySelector('#facilities');
   if (!container) return;
 
-  const tabBtns = container.querySelectorAll('.equipment-tab-btn');
+  const tabsNav = container.querySelector('.equipment-tabs-nav');
   const titleEl = container.querySelector('.equipment-title');
   const tagEl = container.querySelector('.equipment-tag');
   const descEl = container.querySelector('.equipment-desc');
@@ -55,18 +77,26 @@ export function initEquipment() {
   const imgEl = container.querySelector('.equipment-img');
   const progressBar = container.querySelector('.equipment-progress-bar');
 
+  // Re-build tabs nav dynamically
+  if (tabsNav) {
+    tabsNav.innerHTML = activeEquipmentList.map((item, idx) => `
+      <button class="equipment-tab-btn ${idx === 0 ? 'active' : ''}" data-idx="${idx}">${escapeHTML(item.name)}</button>
+    `).join('');
+  }
+
   let currentCategoryIdx = 0;
 
   function selectCategory(index) {
-    if (index < 0 || index >= equipmentData.length) return;
+    if (index < 0 || index >= activeEquipmentList.length) return;
     currentCategoryIdx = index;
-    const item = equipmentData[index];
+    const item = activeEquipmentList[index];
     if (!item) return;
 
-    tabBtns.forEach((b, i) => b.classList.toggle('active', i === index));
+    const allTabs = container.querySelectorAll('.equipment-tab-btn');
+    allTabs.forEach((b, i) => b.classList.toggle('active', i === index));
 
     if (progressBar) {
-      progressBar.style.left = `${(index / equipmentData.length) * 100}%`;
+      progressBar.style.left = `${(index / activeEquipmentList.length) * 100}%`;
     }
 
     if (titleEl) titleEl.textContent = item.title;
@@ -81,25 +111,29 @@ export function initEquipment() {
       }, 150);
     }
 
-    if (specsList) {
+    if (specsList && item.specs) {
       specsList.innerHTML = item.specs.map(spec => `
         <li class="equipment-spec-item">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
-          <span>${spec}</span>
+          <span>${escapeHTML(spec)}</span>
         </li>
       `).join('');
     }
   }
 
-  tabBtns.forEach((btn, idx) => {
-    btn.addEventListener('click', () => selectCategory(idx));
+  container.querySelectorAll('.equipment-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.getAttribute('data-idx')) || 0;
+      selectCategory(idx);
+    });
   });
 
   // Touch swipe support for mobile sideways swiping
   const panel = container.querySelector('.equipment-showcase-panel');
-  if (panel) {
+  if (panel && !panel._hasTouchListener) {
+    panel._hasTouchListener = true;
     let touchStartX = 0;
     let touchStartY = 0;
 
@@ -114,15 +148,15 @@ export function initEquipment() {
       const diffX = touchEndX - touchStartX;
       const diffY = touchEndY - touchStartY;
 
-      // Only trigger on intentional horizontal swipes (> 40px) that dominate vertical scrolling
+      // Only trigger on intentional horizontal swipes (> 40px)
       if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
         if (diffX < 0) {
           // Swipe left -> Next category
-          const nextIdx = (currentCategoryIdx + 1) % equipmentData.length;
+          const nextIdx = (currentCategoryIdx + 1) % activeEquipmentList.length;
           selectCategory(nextIdx);
         } else {
           // Swipe right -> Prev category
-          const prevIdx = (currentCategoryIdx - 1 + equipmentData.length) % equipmentData.length;
+          const prevIdx = (currentCategoryIdx - 1 + activeEquipmentList.length) % activeEquipmentList.length;
           selectCategory(prevIdx);
         }
       }
@@ -130,4 +164,14 @@ export function initEquipment() {
   }
 
   selectCategory(0);
+}
+
+function escapeHTML(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
 }

@@ -5,6 +5,7 @@
 
 import { initialContent } from './data/initial-content.js';
 import { renderReviews } from './components/reviews.js';
+import { renderEquipmentFromCMS } from './components/equipment.js';
 
 export const CMS_STORAGE_KEY = 'rd_health_club_cms_data_v1';
 
@@ -96,6 +97,8 @@ export function initCMSSync() {
 }
 
 function renderPublicContent(data) {
+  if (!data) return;
+
   // 1. Brand Elements
   if (data.brand) {
     document.querySelectorAll('.cms-brand-name').forEach(el => el.textContent = data.brand.name);
@@ -123,14 +126,14 @@ function renderPublicContent(data) {
       athleteImg.src = data.hero.athleteImage;
     }
 
-    // Hero Stats
+    // Hero Stats (supports both .cinema-stat-item and .cms-hero-stat-card)
     if (Array.isArray(data.hero.stats) && data.hero.stats.length) {
-      const statElements = document.querySelectorAll('.cms-hero-stat-card');
+      const statElements = document.querySelectorAll('.cms-hero-stat-card, .cinema-stat-item');
       statElements.forEach((el, index) => {
         const item = data.hero.stats[index];
         if (item) {
-          const valEl = el.querySelector('.stat-value');
-          const lblEl = el.querySelector('.stat-label');
+          const valEl = el.querySelector('.cinema-stat-val, .stat-value');
+          const lblEl = el.querySelector('.cinema-stat-lbl, .stat-label');
           if (valEl) valEl.textContent = item.value;
           if (lblEl) lblEl.textContent = item.label;
         }
@@ -156,18 +159,34 @@ function renderPublicContent(data) {
     if (aboutDesc2) aboutDesc2.textContent = data.about.description2;
   }
 
-  // 4. Membership Plans
-  if (data.membership && Array.isArray(data.membership.plans)) {
-    renderMembershipSection(data.membership);
-    updatePlanDropdowns(data.membership.plans, data.membership.personalTraining);
+  // 4. Facilities & Equipment Showcase
+  if (Array.isArray(data.facilities) && data.facilities.length > 0) {
+    renderEquipmentFromCMS(data.facilities);
   }
 
-  // 5. Trainers & Mentorship Showcase
+  // 5. Membership Plans & Personal Training Banner
+  if (data.membership) {
+    if (Array.isArray(data.membership.plans)) {
+      renderMembershipSection(data.membership);
+      updatePlanDropdowns(data.membership.plans, data.membership.personalTraining);
+    }
+    if (data.membership.personalTraining) {
+      const pt = data.membership.personalTraining;
+      const ptTitle = document.querySelector('.pt-title');
+      const ptDesc = document.querySelector('.pt-desc');
+      const ptPrice = document.querySelector('.pt-price-tag');
+      if (ptTitle && pt.title) ptTitle.textContent = pt.title;
+      if (ptDesc && pt.description) ptDesc.textContent = pt.description;
+      if (ptPrice && pt.price) ptPrice.textContent = `₹${pt.price}`;
+    }
+  }
+
+  // 6. Trainers & Mentorship Showcase
   if (Array.isArray(data.trainers)) {
     renderTrainersSection(data.trainers);
   }
 
-  // 6. Contact Information
+  // 7. Contact Information
   if (data.contact) {
     const addr = document.querySelectorAll('.cms-contact-address');
     addr.forEach(el => el.textContent = data.contact.address);
@@ -178,6 +197,12 @@ function renderPublicContent(data) {
       if (el.tagName === 'A') el.href = `tel:${data.contact.phone.replace(/\s+/g, '')}`;
     });
 
+    const emailLinks = document.querySelectorAll('.cms-contact-email');
+    emailLinks.forEach(el => {
+      el.textContent = data.contact.email;
+      if (el.tagName === 'A') el.href = `mailto:${data.contact.email}`;
+    });
+
     const mTimings = document.querySelector('.cms-timings-morning');
     if (mTimings) mTimings.textContent = data.contact.timingsMorning;
 
@@ -186,14 +211,20 @@ function renderPublicContent(data) {
 
     const openDays = document.querySelector('.cms-timings-days');
     if (openDays) openDays.textContent = data.contact.openDays;
+
+    // Update WhatsApp links across the page
+    const cleanWa = (data.contact.whatsapp || data.contact.phone || '919876543210').replace(/[^0-9]/g, '');
+    document.querySelectorAll('.whatsapp-direct-link').forEach(link => {
+      link.href = `https://api.whatsapp.com/send?phone=${cleanWa}&text=${encodeURIComponent('Hello Mr. R.D. Singh, I would like to inquire about RD Health Club.')}`;
+    });
   }
 
-  // 7. Gallery — rebuild from CMS gallery array
+  // 8. Gallery — rebuild from CMS gallery array
   if (Array.isArray(data.gallery)) {
     renderGallerySection(data.gallery);
   }
 
-  // 8. Reviews / Testimonials — render from CMS data
+  // 9. Reviews / Testimonials — render from CMS data
   renderReviews(data.reviews);
 }
 
