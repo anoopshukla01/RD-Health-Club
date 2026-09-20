@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 3000",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "vite preview --host 0.0.0.0 --port ${PORT:-3000}"
   },
   "dependencies": {
     "canvas-confetti": "^1.9.4",
