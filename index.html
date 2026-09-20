@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RD Health Club | Elite Gym & Personal Training | Gorakhpur</title>
+  <meta name="description" content="RD Health Club in Indira Nagar, Gorakhpur. Led by master trainer Mr. R.D. Singh. State-of-the-art power racks, cardio deck, free weights & personal training. 4.6★ rating." />
+  <link rel="icon" type="image/png" href="/assets/logo.png" />
+  <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+<body>
+
+  <!-- =========================================
+       NAVIGATION BAR
+  ========================================== -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="#hero" class="brand-link" aria-label="RD Health Club Home">
+        <img src="/assets/logo.png" alt="RD Health Club Logo" class="nav-logo-badge" />
+        <div class="brand-text-block">
+          <span class="brand-name">RD HEALTH CLUB</span>
+          <span class="brand-motto">STRENGTH IN MOTION</span>
+        </div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li class="nav-item"><a href="#hero">HOME</a></li>
+          <li class="nav-item"><a href="#about">ABOUT</a></li>
+          <li class="nav-item"><a href="#training">TRAINING</a></li>
+          <li class="nav-item"><a href="#facilities">FACILITIES</a></li>
+          <li class="nav-item"><a href="#membership">MEMBERSHIP</a></li>
+          <li class="nav-item"><a href="#reviews">REVIEWS</a></li>
+          <li class="nav-item"><a href="#contact">CONTACT</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="audio-toggle-btn" title="Toggle Iron Sound FX" aria-label="Toggle Iron Audio FX">
+          <svg class="audio-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          </svg>
+        </button>
+        <button class="btn btn-primary btn-sm trigger-join-modal" data-plan="12months">JOIN NOW</button>
+        <button class="mobile-menu-btn" aria-label="Open Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer">
+    <a href="#hero" class="mobile-nav-item">HOME</a>
+    <a href="#about" class="mobile-nav-item">ABOUT</a>
+    <a href="#training" class="mobile-nav-item">TRAINING</a>
+    <a href="#facilities" class="mobile-nav-item">FACILITIES</a>
+    <a href="#membership" class="mobile-nav-item">MEMBERSHIP</a>
+    <a href="#reviews" class="mobile-nav-item">REVIEWS</a>
+    <a href="#contact" class="mobile-nav-item">CONTACT</a>
+    <button class="btn btn-primary trigger-join-modal" data-plan="12months" style="margin-top: 20px;">JOIN NOW</button>
+  </div>
+
+  <main>
+    <!-- =========================================
+         HERO SECTION (SCROLLYTELLING BARBELL LIFT)
+    ========================================== -->
+    <div class="hero-scroll-wrapper" id="hero">
+      <div class="hero-sticky-stage">
+        <canvas class="hero-particles-canvas"></canvas>
+        <div class="hero-spotlight-top"></div>
+
+        <!-- 3-Column Cinema Layout matching user reference design -->
+        <div class="hero-cinema-grid">
+          
+          <!-- LEFT CONTENT COLUMN -->
+          <div class="hero-col-left">
+            <!-- State 1: Initial View -->
+            <div class="hero-copy-state hero-copy-initial">
+              <span class="hero-tagline-red">STRENGTH IN MOTION</span>
+              <h1 class="hero-cinema-title">
+                TRAIN HARDER.<br />
+                MOVE STRONGER.<br />
+                <span class="red-text">BECOME BETTER.</span>
+              </h1>
+              <p class="hero-cinema-sub">More than a gym. A mindset.</p>
+              <div class="hero-cinema-ctas">
+                <button class="btn btn-primary trigger-join-modal" data-plan="12months">JOIN NOW</button>
+                <a href="#about" class="btn btn-outline">EXPLORE GYM</a>
+              </div>
+            </div>
+
+            <!-- State 2: Lifted View (Scroll-revealed) -->
+            <div class="hero-copy-state hero-copy-lifted">
+              <span class="hero-tagline-red">PUSH YOUR LIMITS</span>
+              <h2 class="hero-cinema-title">
+                STRENGTH<br />
+                BUILDS<br />
+                <span class="red-text">FREEDOM</span>
+              </h2>
+              <p class="hero-cinema-sub">Discipline today. A stronger tomorrow.</p>
+            </div>
+          </div>
+
+          <!-- CENTER ATHLETE CINEMATIC STAGE -->
+          <div class="hero-col-center">
+            <div class="hero-3d-lifter-stage" id="lifter-3d-stage">
+              <!-- Live Activity Pill Badge -->
+              <div class="hero-live-badge">
+                <span class="live-pulse-dot"></span>
+                <span>GORAKHPUR'S BENCHMARK IRON TEMPLE</span>
+              </div>
+
+              <!-- Glowing Red Halo Ring behind head when lifted -->
+              <div class="hero-halo-ring"></div>
+              <div class="hero-lifter-aura"></div>
+              
+              <!-- Cinematic Dual-State Athlete Stage -->
+              <div class="hero-lifter-model-wrap">
+                <div class="hero-athlete-stage-inner">
+                  <img 
+                    src="/assets/hero_athlete_ready.jpg" 
+                    alt="RD Health Club Elite Athlete - Deadlift Setup" 
+                    class="hero-athlete-photo lifter-pose-down" 
+                  />
+                  <img 
+                    src="/assets/hero_athlete_lifted.jpg" 
+                    alt="RD Health Club Elite Athlete - Locked Out Rep" 
+                    class="hero-athlete-photo lifter-pose-up" 
+                  />
+                  <div class="hero-athlete-atmosphere"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scroll Indicator (State 1) -->
+            <div class="hero-scroll-prompt">
+              <span class="scroll-prompt-text">SCROLL</span>
+              <div class="scroll-mouse-icon">
+                <span class="scroll-mouse-wheel"></span>
+              </div>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <polyline points="19 12 12 19 5 12"></polyline>
+              </svg>
+            </div>
+          </div>
+
+          <!-- RIGHT CONTENT COLUMN -->
+          <div class="hero-col-right">
+            <!-- State 1: 3 Core Pillars -->
+            <div class="hero-pillars-state hero-pillars-initial">
+              <div class="hero-pillar-item">
+                <span class="pillar-num">01</span>
+                <span class="pillar-label">STRONGER BODY</span>
+              </div>
+              <div class="hero-pillar-item">
+                <span class="pillar-num">02</span>
+                <span class="pillar-label">HEALTHIER MIND</span>
+              </div>
+              <div class="hero-pillar-item">
+                <span class="pillar-num">03</span>
+                <span class="pillar-label">A BETTER YOU</span>
+              </div>
+            </div>
+
+            <!-- State 2: Lifestyle Statement -->
+            <div class="hero-pillars-state hero-pillars-lifted">
+              <p class="hero-lifestyle-quote">
+                IT'S NOT JUST A WORKOUT.<br />
+                <span class="red-text">IT'S A LIFESTYLE.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BOTTOM STATS ROW (Scroll-revealed at peak lift) -->
+        <div class="hero-cinema-stats-bar">
+          <div class="cinema-stat-item">
+            <div class="cinema-stat-val">1K+</div>
+            <div class="cinema-stat-lbl">MEMBERS</div>
+          </div>
+          <div class="cinema-stat-divider"></div>
+          <div class="cinema-stat-item">
+            <div class="cinema-stat-val">50+</div>
+            <div class="cinema-stat-lbl">TRAINERS</div>
+          </div>
+          <div class="cinema-stat-divider"></div>
+          <div class="cinema-stat-item">
+            <div class="cinema-stat-val">5★</div>
+            <div class="cinema-stat-lbl">RATING</div>
+          </div>
+          <div class="cinema-stat-divider"></div>
+          <div class="cinema-stat-item">
+            <div class="cinema-stat-val">100%</div>
+            <div class="cinema-stat-lbl">RESULTS</div>
+          </div>
+        </div>
+
+        <!-- Interactive HUD Tracker -->
+        <div class="lift-hud-control">
+          <div class="lift-hud-info">
+            <span class="lift-hud-status">READY TO LIFT — SCROLL DOWN</span>
+            <span class="lift-hud-percent">0%</span>
+          </div>
+          <div class="lift-hud-bar-bg">
+            <div class="lift-hud-bar-fill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================
+         ABOUT / BRAND SECTION
+    ========================================== -->
+    <section class="section-padding" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-narrative">
+            <span class="section-tag">About The Gym</span>
+            <h2 class="section-heading">YOUR STRENGTH.<br/><span class="red-text">YOUR JOURNEY.</span></h2>
+            <p class="about-statement">A culture of discipline, progressive overload, and relentless transformation.</p>
+            <p class="about-bio">
+              Founded and mentored by veteran personal trainer <strong>Mr. R.D. Singh</strong>, <strong>RD Health Club</strong> is Gorakhpur's benchmark training facility located in Indira Nagar (Rail Vihar Colony Phase 3rd). Backed by an exceptional <strong>4.6★ Google rating from 53+ verified reviews</strong>, we provide a focused, fully air-conditioned iron haven equipped for athletes, lifters, and everyday individuals striving for peak vitality.
+            </p>
+
+            <div class="about-features-grid">
+              <div class="feature-card">
+                <div class="feature-icon-box">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                  </svg>
+                </div>
+                <h3 class="feature-title">Modern Equipment</h3>
+                <p class="feature-desc">Engineered biomechanical power racks, calibrated bumper plates, and ergonomic machines.</p>
+              </div>
+
+              <div class="feature-card">
+                <div class="feature-icon-box">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                </div>
+                <h3 class="feature-title">Expert Trainers</h3>
+                <p class="feature-desc">Direct hands-on posture, lifting technique, and nutrition guidance by Mr. R.D. Singh.</p>
+              </div>
+
+              <div class="feature-card">
+                <div class="feature-icon-box">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                </div>
+                <h3 class="feature-title">Results Driven</h3>
+                <p class="feature-desc">Measurable body re-composition, targeted fat-loss regimens, and progressive power building.</p>
+              </div>
+
+              <div class="feature-card">
+                <div class="feature-icon-box">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                  </svg>
+                </div>
+                <h3 class="feature-title">Strong Community</h3>
+                <p class="feature-desc">A respectful, motivating environment where lifters push each other to break plateaus.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-media-block">
+            <div class="about-img-frame">
+              <img src="/assets/trainer_rd_singh.jpg" alt="Mr. R.D. Singh - Owner and Head Coach at RD Health Club" />
+            </div>
+            <div class="about-floating-badge">
+              <div class="badge-rating-big">4.6★</div>
+              <div class="badge-rating-text">
+                <strong>Google Verified Rating</strong><br />
+                53+ Active Member Reviews
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         EQUIPMENT SHOWCASE SECTION
+    ========================================== -->
+    <section class="section-padding" id="facilities" style="background: #0b0b0e;">
+      <div class="container">
+        <span class="section-tag">World-Class Hardware</span>
+        <h2 class="section-heading">STATE-OF-THE-ART <span class="red-text">EQUIPMENT</span></h2>
+        <p class="section-subheading">Every machine and barbell calibrated for pure performance, ergonomics, and safety.</p>
+
+        <!-- Category Tabs -->
+        <div class="equipment-tabs-nav">
+          <button class="equipment-tab-btn active">STRENGTH — POWER RACK</button>
+          <button class="equipment-tab-btn">CONDITIONING — CARDIO ZONE</button>
+          <button class="equipment-tab-btn">PERFORMANCE — FREE WEIGHTS</button>
+        </div>
+
+        <div class="equipment-showcase-panel">
+          <div class="equipment-media-wrap">
+            <img src="/assets/equipment_rack.jpg" alt="Titan Power Rack" class="equipment-img" />
+          </div>
+          <div class="equipment-details">
+            <span class="section-tag equipment-tag">Heavy Compound Platform</span>
+            <h3 class="section-heading equipment-title" style="font-size: 2.2rem;">Titan Commercial Power Racks</h3>
+            <p class="equipment-desc">Engineered for maximal load capacity. Heavy gauge structural steel power cages fitted with precision safety spotter arms, multi-grip pull-up bars, and calibrated bumper plates.</p>
+
+            <ul class="equipment-specs-list">
+              <!-- Dynamically populated by JS -->
+            </ul>
+
+            <button class="btn btn-primary trigger-join-modal" data-plan="12months">EXPERIENCE IN PERSON</button>
+            <div class="equipment-progress-line">
+              <div class="equipment-progress-bar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         TRAINING PROGRAMS SECTION
+    ========================================== -->
+    <section class="section-padding" id="training">
+      <div class="container">
+        <span class="section-tag">Tailored Protocols</span>
+        <h2 class="section-heading">TRAIN <span class="red-text">YOUR WAY</span></h2>
+        <p class="section-subheading">Structured fitness pathways curated by Coach R.D. Singh to match your physiological ambition.</p>
+
+        <div class="programs-grid">
+          <!-- Program 1: Strength -->
+          <div class="program-card">
+            <div class="program-card-img">
+              <img src="/assets/strength_program.jpg" alt="Strength & Powerlifting Training" />
+            </div>
+            <div class="program-card-body">
+              <h3 class="program-card-title">STRENGTH</h3>
+              <p class="program-card-desc">Focus on heavy compound lifts: Squat, Bench Press, Deadlift, and Overhead Press. Master progressive overload and nervous system recruitment.</p>
+              <ul class="program-card-features">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Compound Lift Technique</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Periodized Progression</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Core & Central Stability</li>
+              </ul>
+              <button class="btn btn-outline trigger-join-modal" data-plan="12months">SELECT PLAN</button>
+            </div>
+          </div>
+
+          <!-- Program 2: Fat Loss -->
+          <div class="program-card">
+            <div class="program-card-img">
+              <img src="/assets/fat_loss_program.jpg" alt="Fat Loss & Conditioning" />
+            </div>
+            <div class="program-card-body">
+              <h3 class="program-card-title">FAT LOSS</h3>
+              <p class="program-card-desc">High-metabolic conditioning integrating battle ropes, HIIT intervals, incline cardio, and circuit training to accelerate calorie burn and build stamina.</p>
+              <ul class="program-card-features">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> High Metabolic Output</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Cardiovascular Endurance</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Nutritional Guidance</li>
+              </ul>
+              <button class="btn btn-outline trigger-join-modal" data-plan="6months">SELECT PLAN</button>
+            </div>
+          </div>
+
+          <!-- Program 3: Muscle Building -->
+          <div class="program-card">
+            <div class="program-card-img">
+              <img src="/assets/muscle_building.jpg" alt="Muscle Building & Hypertrophy" />
+            </div>
+            <div class="program-card-body">
+              <h3 class="program-card-title">MUSCLE BUILDING</h3>
+              <p class="program-card-desc">Targeted hypertrophy splits designed to build dense muscular symmetry, vascularity, and peak muscle fibers through isolation and cable work.</p>
+              <ul class="program-card-features">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Hypertrophy Volume Splits</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Mind-Muscle Connection</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Strict Form Isolation</li>
+              </ul>
+              <button class="btn btn-outline trigger-join-modal" data-plan="12months">SELECT PLAN</button>
+            </div>
+          </div>
+
+          <!-- Program 4: Personal Training (Featured with R.D. Singh) -->
+          <div class="program-card featured">
+            <span class="program-card-badge">EXCLUSIVE COACHING</span>
+            <div class="program-card-img">
+              <img src="/assets/gym_coaching.jpg" alt="Personal Training with Coach R.D. Singh" />
+            </div>
+            <div class="program-card-body">
+              <h3 class="program-card-title">PERSONAL TRAINING</h3>
+              <div class="program-card-price">₹4,999 <span style="font-size: 0.9rem; color: var(--text-muted); font-family: var(--font-body);">/ Month</span></div>
+              <p class="program-card-desc">Direct, 1-on-1 private coaching with Mr. R.D. Singh. Custom tailored nutrition blueprints, biomechanical spotter assistance, and weekly accountability.</p>
+              <ul class="program-card-features">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> 1-on-1 With Coach R.D. Singh</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Customized Diet & Supplement Plan</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Guaranteed Weekly Transformations</li>
+              </ul>
+              <button class="btn btn-primary trigger-join-modal" data-plan="pt">ENROLL PERSONAL TRAINING</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         SIGNATURE CHARACTER SECTION
+    ========================================== -->
+    <section class="signature-character-section">
+      <div class="signature-bg-circle">
+        <div class="signature-inner-circle"></div>
+      </div>
+
+      <div class="container signature-container">
+        <div class="signature-character-card">
+          <img src="/assets/character_standing_pose.jpg" alt="RD Health Club Muscular Character Power Pose" />
+        </div>
+
+        <div class="signature-text-block">
+          <span class="section-tag">The Philosophy</span>
+          <div class="kinetic-line">NO EXCUSES.</div>
+          <div class="kinetic-line">JUST PROGRESS.</div>
+          <div class="kinetic-line red-active">BE STRONGER THAN EXCUSES.</div>
+
+          <p class="signature-caption">
+            Strength is forged when comfort is cast aside. Every rep counts, every bead of sweat matters, and every day you step into RD Health Club is a victory over hesitation.
+          </p>
+
+          <div style="display: flex; gap: 16px;">
+            <button class="btn btn-primary trigger-join-modal" data-plan="12months">START TRANSFORMATION</button>
+            <a href="#membership" class="btn btn-outline">VIEW MEMBERSHIPS</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         PROGRESS / TRUST SECTION ("YOUR POTENTIAL")
+    ========================================== -->
+    <section class="section-padding" style="background: #09090c;">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 56px;">
+          <span class="section-tag">Proven Impact</span>
+          <h2 class="section-heading">YOUR <span class="red-text">POTENTIAL</span> UNLEASHED</h2>
+          <p class="section-subheading" style="margin: 0 auto;">Numbers backed by real sweat, discipline, and authentic transformation.</p>
+        </div>
+
+        <div class="potential-stats-grid">
+          <div class="stat-box">
+            <div class="stat-number" id="stat-members">500<span class="red-accent">+</span></div>
+            <div class="stat-label">Active Members</div>
+            <div class="stat-sublabel">Transformed in Gorakhpur</div>
+          </div>
+
+          <div class="stat-box">
+            <div class="stat-number" id="stat-rating">4.6<span class="red-accent">★</span></div>
+            <div class="stat-label">Google Rating</div>
+            <div class="stat-sublabel">Based on 53+ Verified Reviews</div>
+          </div>
+
+          <div class="stat-box">
+            <div class="stat-number" id="stat-trainer">1<span class="red-accent"></span></div>
+            <div class="stat-label">Expert Master Trainer</div>
+            <div class="stat-sublabel">Mr. R.D. Singh — Direct Coaching</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         TESTIMONIALS / GOOGLE REVIEWS SECTION
+    ========================================== -->
+    <section class="section-padding" id="reviews" style="background: #0e0e12;">
+      <div class="container">
+        <div class="reviews-section-header">
+          <div>
+            <span class="section-tag">Authentic Feedback</span>
+            <h2 class="section-heading">MEMBER <span class="red-text">TESTIMONIALS</span></h2>
+            <p style="color: var(--text-muted); font-size: 1.05rem;">Real experiences from real lifters at RD Health Club.</p>
+          </div>
+
+          <!-- Prominent Google Rating Badge -->
+          <div class="google-widget-badge">
+            <div class="google-g-icon">G</div>
+            <div class="google-widget-info">
+              <div class="google-rating-row">
+                <span class="rating-number">4.6</span>
+                <span class="stars-row">★★★★★</span>
+              </div>
+              <span class="google-reviews-count">53 Verified Google Reviews</span>
+              <div class="google-widget-links">
+                <a href="https://www.google.com/maps/place/rd+health+club+gkp/data=!4m2!3m1!1s0x399144808dc81f41:0xf3b851b9343933ce" target="_blank" rel="noopener">Write a Review</a>
+                <span>•</span>
+                <a href="https://www.google.com/maps/place/rd+health+club+gkp/data=!4m2!3m1!1s0x399144808dc81f41:0xf3b851b9343933ce" target="_blank" rel="noopener">See all reviews on Google</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reviews-carousel-wrapper">
+          <div class="reviews-grid">
+            <!-- Dynamically populated with all 7 real customer reviews -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         CINEMATIC GYM GALLERY
+    ========================================== -->
+    <section class="section-padding" id="gallery" style="background: #08080a;">
+      <div class="container">
+        <div style="margin-bottom: 48px;">
+          <span class="section-tag">Visual Atmosphere</span>
+          <h2 class="section-heading">CINEMATIC <span class="red-text">GALLERY</span></h2>
+          <p class="section-subheading">Step inside Gorakhpur's most dedicated fitness arena. Click any frame for detail.</p>
+        </div>
+
+        <div class="gallery-masonry">
+          <div class="gallery-item col-span-8 row-span-2" data-full="/assets/gym_interior.jpg">
+            <img src="/assets/gym_interior.jpg" alt="RD Health Club Interior Overview" />
+            <div class="gallery-item-overlay">
+              <div class="gallery-item-category">Main Floor</div>
+              <h3 class="gallery-item-title">Main Training Arena & Power Stations</h3>
+            </div>
+          </div>
+
+          <div class="gallery-item col-span-4" data-full="/assets/equipment_rack.jpg">
+            <img src="/assets/equipment_rack.jpg" alt="Power Rack with Barbell" />
+            <div class="gallery-item-overlay">
+              <div class="gallery-item-category">Equipment</div>
+              <h3 class="gallery-item-title">Heavy-Duty Power Cages</h3>
+            </div>
+          </div>
+
+          <div class="gallery-item col-span-4" data-full="/assets/equipment_weights.jpg">
+            <img src="/assets/equipment_weights.jpg" alt="Dumbbell Rack" />
+            <div class="gallery-item-overlay">
+              <div class="gallery-item-category">Free Weights</div>
+              <h3 class="gallery-item-title">Urethane Dumbbell Section</h3>
+            </div>
+          </div>
+
+          <div class="gallery-item col-span-4" data-full="/assets/equipment_cardio.jpg">
+            <img src="/assets/equipment_cardio.jpg" alt="Cardio Zone" />
+            <div class="gallery-item-overlay">
+              <div class="gallery-item-category">Cardio Deck</div>
+              <h3 class="gallery-item-title">Air-Conditioned Cardio Fleet</h3>
+            </div>
+          </div>
+
+          <div class="gallery-item col-span-4" data-full="/assets/gym_coaching.jpg">
+            <img src="/assets/gym_coaching.jpg" alt="Personal Training Session" />
+            <div class="gallery-item-overlay">
+              <div class="gallery-item-category">Mentorship</div>
+              <h3 class="gallery-item-title">Personal Spotting & Form Correction</h3>
+            </div>
+          </div>
+
+          <div class="gallery-item col-span-4" data-full="/assets/strength_program.jpg">
+            <img src="/assets/strength_program.jpg" alt="Heavy Deadlift with Chalk" />
+            <div class="gallery-item-overlay">
+              <div class="gallery-item-category">Powerlifting</div>
+              <h3 class="gallery-item-title">Max Effort Barbell Deadlifts</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         MOTIVATIONAL FULL-SCREEN DIVIDER
+    ========================================== -->
+    <section class="motivational-section">
+      <div class="motivational-bg-glow"></div>
+      <div class="motivational-content">
+        <h2 class="motivational-quote">"THE ONLY BAD WORKOUT IS THE ONE YOU DIDN'T DO."</h2>
+        <div class="motivational-motto-wrapper">
+          <div class="motivational-motto">BE STRONGER THAN EXCUSES.</div>
+          <div class="animated-drawing-line"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         MEMBERSHIP SECTION
+    ========================================== -->
+    <section class="section-padding" id="membership" style="background: #0a0a0d;">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 56px;">
+          <span class="section-tag">Transparent Pricing</span>
+          <h2 class="section-heading">JOIN <span class="red-text">RD HEALTH CLUB</span></h2>
+          <p class="section-subheading" style="margin: 0 auto;">No hidden fees. Premium access to all equipment and facilities in Gorakhpur.</p>
+        </div>
+
+        <div class="membership-grid">
+          <!-- 1 Month Plan -->
+          <div class="membership-card">
+            <div class="plan-header">
+              <h3 class="plan-title">1 MONTH</h3>
+              <p class="plan-sub">Starter Trial Package</p>
+            </div>
+            <div class="plan-price-wrap">
+              <span class="plan-currency">₹</span>
+              <span class="plan-amount">799</span>
+            </div>
+            <ul class="plan-features-list">
+              <li class="plan-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Full Gym Equipment Access</li>
+              <li class="plan-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Morning & Evening Timings</li>
+              <li class="plan-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Fully Air-Conditioned Arena</li>
+              <li class="plan-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> General Trainer Supervision</li>
+              <li class="plan-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Locker & Changing Rooms</li>
+            </ul>
+            <button class="btn btn-outline trigger-join-modal" data-plan="1month">JOIN 1 MONTH</button>
+          </div>
+
+          <!-- 3 Months Plan -->
+          <div class="membership-card">
+            <div class="plan-header">
+              <h3 class="plan-title">3 MONTHS</h3>
+              <p class="plan-sub">Quarterly Momentum</p>
+            </div>
+            <div class="plan-price-wrap">
+              <span class="plan-currency">₹</span>
+              <span class="plan-amount">2,499</span>
+            </div>
+            <ul class="plan-features-list">
+              <li class="plan-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Full Gym Equipment Access</li>
+              <li class="plan-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Morning & Evening Slot Flexibility</li>
+              <li class="plan-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Custom Workout Routine</li>
+              <li class="plan-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> General Trainer Supervision</li>
+              <li class="plan-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Locker & Changing Rooms</li>
+            </ul>
+            <button class="btn btn-outline trigger-join-modal" data-plan="3months">JOIN 3 MONTHS</button>
+          </div>
+
+          <!-- 6 Months Plan -->
+          <div class="membership-card">
+            <div class="plan-header">
+              <h3 class="plan-title">6 MONTHS</h3>
+              <p class="plan-sub">Transformation Protocol</p>
+            </div>
+            <div class="plan-price-wrap">
+              <span class="plan-currency">₹</span>
+              <span class="plan-amount">3,999</span>
+            </div>
+            <ul class="plan-features-list">
+              <li class="plan-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Full Gym Equipment Access</li>
+              <li class="plan-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Morning & Evening Slot Flexibility</li>
+              <li class="plan-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Custom Workout Program Routine</li>
+              <li class="plan-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Monthly Body Metric Assessment</li>
+              <li class="plan-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Nutrition & Macro Consultation</li>
+            </ul>
+            <button class="btn btn-outline trigger-join-modal" data-plan="6months">JOIN 6 MONTHS</button>
+          </div>
+
+          <!-- 12 Months Plan (Best Value) -->
+          <div class="membership-card featured">
+            <div class="best-value-badge">BEST VALUE</div>
+            <div class="plan-header">
+              <h3 class="plan-title">12 MONTHS</h3>
+              <p class="plan-sub">Annual Elite Commitment</p>
+            </div>
+            <div class="plan-price-wrap">
+              <span class="plan-currency">₹</span>
+              <span class="plan-amount">6,999</span>
+            </div>
+            <ul class="plan-features-list">
+              <li class="plan-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> 365 Days Unlimited Access</li>
+              <li class="plan-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Lowest Monthly Cost (~₹583/mo)</li>
+              <li class="plan-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Continuous Coaching By R.D. Singh</li>
+              <li class="plan-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Periodic Nutrition & Diet Updates</li>
+              <li class="plan-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Membership Freeze Option (Up to 30 Days)</li>
+            </ul>
+            <button class="btn btn-primary trigger-join-modal" data-plan="12months">JOIN 12 MONTHS</button>
+          </div>
+        </div>
+
+        <!-- Separate Personal Training Featured Banner -->
+        <div class="pt-standalone-banner">
+          <div class="pt-info-left">
+            <span class="pt-badge">ONE-ON-ONE MENTORSHIP</span>
+            <h3 class="pt-title">PERSONAL TRAINING WITH MR. R.D. SINGH</h3>
+            <p class="pt-desc">
+              Dedicated 1-on-1 coaching for accelerated fat-loss, bodybuilding prep, or injury rehabilitation. Get direct daily oversight from Gorakhpur's most respected fitness mentor.
+            </p>
+          </div>
+          <div class="pt-pricing-right">
+            <div>
+              <div class="pt-price-tag">₹4,999</div>
+              <span style="color: var(--text-dim); font-size: 0.85rem; font-family: var(--font-mono);">PER MONTH PRIVATE</span>
+            </div>
+            <button class="btn btn-primary trigger-join-modal" data-plan="pt">BOOK COACHING</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         CONTACT / VISIT SECTION
+    ========================================== -->
+    <section class="section-padding" id="contact" style="background: #070709;">
+      <div class="container">
+        <span class="section-tag">Find Us</span>
+        <h2 class="section-heading">VISIT <span class="red-text">THE CLUB</span></h2>
+        <p class="section-subheading">Conveniently located in Indira Nagar, Gorakhpur. Walk in for a trial or connect directly.</p>
+
+        <div class="contact-grid">
+          <div class="contact-info-panel">
+            <!-- Address Card -->
+            <div class="contact-detail-card">
+              <div class="contact-icon-box">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div>
+                <h3 class="contact-card-title">Gym Address</h3>
+                <p class="contact-card-text">
+                  Rail Vihar Colony Phase 3rd, Indira Nagar, Gorakhpur, Uttar Pradesh 273001, India
+                </p>
+                <a href="https://www.google.com/maps/place/rd+health+club+gkp/data=!4m2!3m1!1s0x399144808dc81f41:0xf3b851b9343933ce" target="_blank" rel="noopener" class="social-pill-link" style="margin-top: 12px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
+                  <span>View on Google Maps</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Timings Card -->
+            <div class="contact-detail-card">
+              <div class="contact-icon-box">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div>
+                <h3 class="contact-card-title">Gym Timings</h3>
+                <p class="contact-card-text">
+                  <strong>Morning:</strong> 6:00 AM – 10:00 AM<br />
+                  <strong>Evening:</strong> 4:00 PM – 9:00 PM<br />
+                  <span style="color: var(--text-dim); font-size: 0.85rem;">Open Monday through Saturday</span>
+                </p>
+              </div>
+            </div>
+
+            <!-- Owner & Instagram Card -->
+            <div class="contact-detail-card">
+              <div class="contact-icon-box">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </div>
+              <div>
+                <h3 class="contact-card-title">Owner & Social</h3>
+                <p class="contact-card-text">
+                  Owner & Master Trainer: <strong>Mr. R.D. Singh</strong><br />
+                  Official Instagram: <strong>@rdhealthclub</strong> (333 followers)
+                </p>
+                <a href="https://www.instagram.com/rdhealthclub/" target="_blank" rel="noopener" class="social-pill-link">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                  <span>Follow @rdhealthclub</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Map View Container -->
+            <div class="map-container">
+              <iframe
+                title="RD Health Club Location Map"
+                src="https://maps.google.com/maps?q=Rail+Vihar+Colony+Phase+3rd+Indira+Nagar+Gorakhpur&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                loading="lazy">
+              </iframe>
+            </div>
+          </div>
+
+          <!-- Quick Inquiry Form -->
+          <div class="contact-form-card">
+            <span class="section-tag">Quick Inquiry</span>
+            <h3 class="section-heading" style="font-size: 2.2rem; margin-bottom: 12px;">SEND A <span class="red-text">MESSAGE</span></h3>
+            <p style="color: var(--text-muted); margin-bottom: 28px; font-size: 0.95rem;">Have questions about joining or personal training? Drop your message below or connect with Coach R.D. Singh.</p>
+
+            <form id="contact-inquiry-form">
+              <div class="form-group">
+                <label for="inq-name" class="form-label">FULL NAME</label>
+                <input type="text" id="inq-name" class="form-input" placeholder="e.g. Rahul Sharma" required />
+              </div>
+
+              <div class="form-group">
+                <label for="inq-phone" class="form-label">PHONE / WHATSAPP</label>
+                <input type="tel" id="inq-phone" class="form-input" placeholder="+91 98765 43210" required />
+              </div>
+
+              <div class="form-group">
+                <label for="inq-interest" class="form-label">INTERESTED IN</label>
+                <select id="inq-interest" class="form-select">
+                  <option value="12 Months Plan (₹6,999)">12 Months Membership (₹6,999 - Best Value)</option>
+                  <option value="6 Months Plan (₹3,999)">6 Months Membership (₹3,999)</option>
+                  <option value="3 Months Plan (₹2,499)">3 Months Membership (₹2,499)</option>
+                  <option value="1 Month Plan (₹799)">1 Month Membership (₹799)</option>
+                  <option value="Personal Training (₹4,999)">Personal Training with R.D. Singh (₹4,999)</option>
+                  <option value="General Trial Visit">General Trial Visit</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="inq-msg" class="form-label">MESSAGE (OPTIONAL)</label>
+                <textarea id="inq-msg" class="form-textarea" placeholder="Tell us about your fitness background or preferred timings..."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width: 100%;">SEND INQUIRY VIA WHATSAPP</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         FINAL CTA SECTION
+    ========================================== -->
+    <section class="final-cta-section">
+      <div class="container final-cta-content">
+        <img src="/assets/character_cutout.png" alt="RD Health Club Muscular Icon" class="final-char-img" />
+        <h2 class="final-cta-title">READY TO GET STRONGER?</h2>
+        <h3 class="final-cta-motto">JOIN RD HEALTH CLUB</h3>
+        <p style="font-size: 1.25rem; color: #d6d6e0; max-width: 580px; margin: 0 auto 36px;">
+          "BE STRONGER THAN EXCUSES." Stop waiting for the perfect day. Step up to the barbell today.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+          <button class="btn btn-primary trigger-join-modal" data-plan="12months">JOIN NOW</button>
+          <a href="#hero" class="btn btn-outline">BACK TO TOP</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================
+       FOOTER
+  ========================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="/assets/logo.png" alt="RD Health Club Emblem" class="footer-logo" />
+          <div>
+            <h4 style="font-size: 1.5rem; color: #ffffff; letter-spacing: 0.05em;">RD HEALTH CLUB</h4>
+            <p style="font-size: 0.82rem; color: var(--red-primary); font-family: var(--font-mono);">BE STRONGER THAN EXCUSES</p>
+          </div>
+        </div>
+
+        <ul class="footer-nav">
+          <li><a href="#hero">HOME</a></li>
+          <li><a href="#about">ABOUT</a></li>
+          <li><a href="#training">TRAINING</a></li>
+          <li><a href="#facilities">FACILITIES</a></li>
+          <li><a href="#membership">MEMBERSHIP</a></li>
+          <li><a href="#reviews">REVIEWS</a></li>
+          <li><a href="#contact">CONTACT</a></li>
+        </ul>
+
+        <div>
+          <a href="https://www.instagram.com/rdhealthclub/" target="_blank" rel="noopener" class="social-pill-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            <span>Instagram: @rdhealthclub</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          Rail Vihar Colony Phase 3rd, Indira Nagar, Gorakhpur, UP 273001 • Master Trainer: Mr. R.D. Singh
+        </div>
+        <div>
+          &copy; 2026 RD Health Club. All Rights Reserved. Strength in Motion.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================
+       MEMBERSHIP & ENROLLMENT MODAL
+  ========================================== -->
+  <dialog class="app-modal">
+    <div class="modal-header">
+      <h3 style="font-size: 1.8rem; color: #ffffff;">START YOUR MEMBERSHIP</h3>
+      <button class="modal-close-btn" aria-label="Close dialog">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+
+    <div class="modal-form-content">
+      <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 24px;">
+        Choose your plan below to register with <strong>RD Health Club</strong>. Mr. R.D. Singh will confirm your enrollment and timing slot.
+      </p>
+
+      <form id="modal-enroll-form">
+        <div class="form-group">
+          <label for="modal-plan-select" class="form-label">SELECTED MEMBERSHIP PLAN</label>
+          <select id="modal-plan-select" class="form-select">
+            <option value="12months">12 Months — ₹6,999 (Best Value)</option>
+            <option value="6months">6 Months — ₹3,999</option>
+            <option value="3months">3 Months — ₹2,499</option>
+            <option value="1month">1 Month — ₹799</option>
+            <option value="pt">Personal Training with R.D. Singh — ₹4,999</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="modal-name" class="form-label">YOUR FULL NAME</label>
+          <input type="text" id="modal-name" class="form-input" placeholder="e.g. Aman Verma" required />
+        </div>
+
+        <div class="form-group">
+          <label for="modal-phone" class="form-label">PHONE NUMBER (WHATSAPP)</label>
+          <input type="tel" id="modal-phone" class="form-input" placeholder="+91 98765 43210" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">CONFIRM & CONNECT</button>
+      </form>
+    </div>
+
+    <div class="modal-success-content" style="display: none; text-align: center; padding: 20px 0;">
+      <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(255, 31, 36, 0.2); border: 2px solid var(--red-primary); color: #ffffff; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.8rem;">
+        ✓
+      </div>
+      <h3 style="font-size: 1.8rem; margin-bottom: 12px;">YOU'RE READY TO TRAIN!</h3>
+      <p style="color: var(--text-muted); margin-bottom: 24px; font-size: 0.95rem;">
+        Your inquiry has been recorded. Tap below to send your details directly to Coach R.D. Singh on WhatsApp for instant onboarding:
+      </p>
+      <a href="#" class="btn btn-primary whatsapp-direct-link" target="_blank" rel="noopener" style="width: 100%;">
+        OPEN WHATSAPP CHAT
+      </a>
+    </div>
+  </dialog>
+
+  <!-- =========================================
+       FULLSCREEN GALLERY LIGHTBOX
+  ========================================== -->
+  <div class="lightbox-modal">
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="Full Resolution View" class="lightbox-img" />
+  </div>
+
+  <!-- Main JavaScript Entrypoint -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
