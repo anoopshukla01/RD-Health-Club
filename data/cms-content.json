@@ -1,0 +1,291 @@
+{
+  "brand": {
+    "name": "RD HEALTH CLUB",
+    "motto": "BE STRONGER THAN EXCUSES",
+    "city": "Gorakhpur, UP",
+    "logo": "/assets/logo.png",
+    "badge": "/assets/logo_badge.png",
+    "primaryColor": "#ff1f24"
+  },
+  "hero": {
+    "tag": "GORAKHPUR'S PREMIER STRENGTH ARENA",
+    "titleLine1": "FORGE UNBREAKABLE",
+    "titleLine2": "STRENGTH & DISCIPLINE",
+    "subtitle": "Step into the elite training sanctuary curated by Mr. R.D. Singh. Olympic bars, precision biomechanics, and relentless iron culture in Indira Nagar.",
+    "athleteImage": "/assets/character_cutout.png",
+    "ctaPrimary": "CLAIM 1-MONTH MEMBERSHIP",
+    "ctaSecondary": "EXPLORE PLANS",
+    "stats": [
+      {
+        "label": "DEDICATED MEMBERS",
+        "value": "1,500+"
+      },
+      {
+        "label": "OLYMPIC GRADE GEAR",
+        "value": "45+ STATIONS"
+      },
+      {
+        "label": "EXPERIENCE IN IRON",
+        "value": "15+ YEARS"
+      },
+      {
+        "label": "COMMUNITY RATING",
+        "value": "4.9 / 5.0"
+      }
+    ]
+  },
+  "about": {
+    "tag": "THE IRON SANCTUARY",
+    "title": "WHERE CHAMPIONS ARE MOLDED",
+    "quote": "\"THE BARBELL DOESN'T LIE. YOU EITHER LIFT IT OR YOU DON'T. WE TEACH YOU TO NEVER QUIT.\"",
+    "author": "— Mr. R.D. Singh (Founder & Master Coach)",
+    "description1": "Founded on pure grit and authentic lifting culture, RD Health Club is Gorakhpur's benchmark for strength sports, body transformation, and lifestyle discipline. We refuse mediocre shortcuts.",
+    "description2": "Equipped with specialized power cages, competition platforms, high-tensile cables, and an energy-packed environment where novice lifters and seasoned athletes train shoulder to shoulder.",
+    "stats": [
+      {
+        "label": "SQUARE FEET ARENA",
+        "value": "4,500"
+      },
+      {
+        "label": "TRANSFORMATIONS",
+        "value": "1,200+"
+      },
+      {
+        "label": "CERTIFIED TRAINERS",
+        "value": "8"
+      }
+    ]
+  },
+  "membership": {
+    "tag": "TRANSPARENT PRICING",
+    "title": "JOIN RD HEALTH CLUB",
+    "subtitle": "No hidden fees. Premium access to all equipment and facilities in Gorakhpur.",
+    "plans": [
+      {
+        "id": "1month",
+        "title": "1 MONTH",
+        "subtitle": "Starter Trial Package",
+        "price": "799",
+        "duration": "1 Month",
+        "featured": false,
+        "badgeText": "",
+        "features": [
+          "Full Gym Equipment Access",
+          "Morning & Evening Timings",
+          "Fully Air-Conditioned Arena",
+          "General Trainer Supervision",
+          "Locker & Changing Rooms"
+        ],
+        "buttonText": "JOIN 1 MONTH"
+      },
+      {
+        "id": "3months",
+        "title": "3 MONTHS",
+        "subtitle": "Quarterly Momentum",
+        "price": "2,499",
+        "duration": "3 Months",
+        "featured": false,
+        "badgeText": "",
+        "features": [
+          "Full Gym Equipment Access",
+          "Morning & Evening Slot Flexibility",
+          "Custom Workout Routine",
+          "General Trainer Supervision",
+          "Locker & Changing Rooms"
+        ],
+        "buttonText": "JOIN 3 MONTHS"
+      },
+      {
+        "id": "6months",
+        "title": "6 MONTHS",
+        "subtitle": "Transformation Protocol",
+        "price": "3,999",
+        "duration": "6 Months",
+        "featured": false,
+        "badgeText": "POPULAR",
+        "features": [
+          "Full Gym Equipment Access",
+          "Morning & Evening Slot Flexibility",
+          "Custom Workout Program Routine",
+          "Monthly Body Metric Assessment",
+          "Nutrition & Macro Consultation"
+        ],
+        "buttonText": "JOIN 6 MONTHS"
+      },
+      {
+        "id": "12months",
+        "title": "12 MONTHS",
+        "subtitle": "Annual Elite Commitment",
+        "price": "6,999",
+        "duration": "12 Months",
+        "featured": true,
+        "badgeText": "BEST VALUE",
+        "features": [
+          "365 Days Unlimited Access",
+          "Lowest Monthly Cost (~₹583/mo)",
+          "Continuous Coaching By R.D. Singh",
+          "Periodic Nutrition & Diet Updates",
+          "Membership Freeze Option (Up to 30 Days)"
+        ],
+        "buttonText": "JOIN 12 MONTHS"
+      }
+    ],
+    "personalTraining": {
+      "tag": "ONE-ON-ONE MENTORSHIP",
+      "title": "PERSONAL TRAINING WITH MR. R.D. SINGH",
+      "description": "Dedicated 1-on-1 coaching for accelerated fat-loss, bodybuilding prep, or injury rehabilitation. Get direct daily oversight from Gorakhpur's most respected fitness mentor.",
+      "price": "4,999",
+      "period": "PER MONTH PRIVATE",
+      "buttonText": "BOOK COACHING"
+    }
+  },
+  "trainers": [
+    {
+      "id": "rd-singh",
+      "name": "Mr. R.D. Singh",
+      "role": "Founder & Master Coach",
+      "specialty": "Powerlifting & Body Transformation",
+      "experience": "15+ Years",
+      "certifications": "Gold Medalist Lifter • Master Strength Coach",
+      "image": "/assets/trainer_rd_singh.jpg",
+      "bio": "Pioneer of modern strength culture in Eastern UP. Having coached over 1,200 athletes, R.D. Singh specializes in biomechanically sound heavy lifting, contest prep, and lasting posture correction."
+    },
+    {
+      "id": "aman-yadav",
+      "name": "Aman Yadav",
+      "role": "Senior Strength Trainer",
+      "specialty": "Hypertrophy & Functional Conditioning",
+      "experience": "6+ Years",
+      "certifications": "K11 Certified Fitness Trainer • CPR & AED",
+      "image": "/assets/gym_coaching.jpg",
+      "bio": "Focuses on explosive power, athletic conditioning, and high-intensity metabolic splits for dramatic body recomposition."
+    },
+    {
+      "id": "priya-mishra",
+      "name": "Priya Mishra",
+      "role": "Mobility & Nutrition Specialist",
+      "specialty": "Fat Loss, Mobility & Macro Diet Planning",
+      "experience": "5+ Years",
+      "certifications": "ISSA Certified Sports Nutritionist",
+      "image": "/assets/strength_program.jpg",
+      "bio": "Designs personalized nutrition and recovery protocols that fit busy lifestyle schedules while maximizing gym results."
+    }
+  ],
+  "facilities": [
+    {
+      "id": "free-weights",
+      "name": "Olympic Free Weights & Dumbbell Zone",
+      "desc": "Precision calibrated rubber-coated hex dumbbells up to 50kg, cast iron competition plates, and zero-wobble utility benches.",
+      "image": "/assets/equipment_weights.jpg"
+    },
+    {
+      "id": "power-racks",
+      "name": "Competition Squat & Power Cages",
+      "desc": "Heavy-gauge steel power racks with safety spotter arms, band pegs, and multi-grip pull-up bars for safe, maximal compound lifting.",
+      "image": "/assets/equipment_rack.jpg"
+    },
+    {
+      "id": "cardio-zone",
+      "name": "High-Metabolic Cardio Deck",
+      "desc": "Commercial treadmills with high incline, stair climbers, and spin bikes in an air-conditioned, high-ventilation arena.",
+      "image": "/assets/equipment_cardio.jpg"
+    },
+    {
+      "id": "cable-machines",
+      "name": "Dual Adjustable Pulley & Biomechanics",
+      "desc": "Smooth-glide dual cable cross towers, lat pulldowns, and plate-loaded leverage machines for safe hypertrophy isolation.",
+      "image": "/assets/gym_interior.jpg"
+    }
+  ],
+  "gallery": [
+    {
+      "id": "g1",
+      "title": "Heavy Bench Press Stance",
+      "url": "/assets/hero_lifter_up.png"
+    },
+    {
+      "id": "g2",
+      "title": "Olympic Barbell Preparation",
+      "url": "/assets/hero_lifter_down.png"
+    },
+    {
+      "id": "g3",
+      "title": "Gym Floor & Free Weights",
+      "url": "/assets/equipment_weights.jpg"
+    },
+    {
+      "id": "g4",
+      "title": "Squat Rack & Strength Arena",
+      "url": "/assets/equipment_rack.jpg"
+    },
+    {
+      "id": "g5",
+      "title": "Cardio Conditioning Suite",
+      "url": "/assets/equipment_cardio.jpg"
+    },
+    {
+      "id": "g6",
+      "title": "Coaching Session in Progress",
+      "url": "/assets/gym_coaching.jpg"
+    }
+  ],
+  "reviews": [
+    {
+      "id": "r1",
+      "name": "Vikram Srivastava",
+      "role": "Member for 2 Years",
+      "rating": 5,
+      "comment": "RD Health Club is unlike any commercial gym in Gorakhpur. Coach R.D. Singh fixed my deadlift posture within 2 weeks. Lost 14kg in 5 months. The equipment and vibe are unmatched!"
+    },
+    {
+      "id": "r2",
+      "name": "Rohit Pandey",
+      "role": "Powerlifter & Member",
+      "rating": 5,
+      "comment": "Real iron, no nonsense. The power racks and Olympic plates are top grade. If you are serious about genuine strength and muscle building, there is no other place in town."
+    },
+    {
+      "id": "r3",
+      "name": "Anjali Gupta",
+      "role": "Fat Loss Transformation",
+      "rating": 5,
+      "comment": "Very safe, air-conditioned, and welcoming environment for women. Trainers give genuine supervision instead of ignoring you. Best decision I made this year."
+    }
+  ],
+  "contact": {
+    "address": "Rail Vihar Colony Phase 3rd, Indira Nagar, Gorakhpur, Uttar Pradesh 273001, India",
+    "googleMapsUrl": "https://www.google.com/maps/place/rd+health+club+gkp/data=!4m2!3m1!1s0x399144808dc81f41:0xf3b851b9343933ce",
+    "phone": "+91 98765 43210",
+    "whatsapp": "+91 98765 43210",
+    "email": "contact@rdhealthclub.com",
+    "instagram": "https://www.instagram.com/rdhealthclub/",
+    "timingsMorning": "05:30 AM — 10:30 AM",
+    "timingsEvening": "04:30 PM — 10:00 PM",
+    "openDays": "Monday to Saturday (Sunday: Recovery / Morning Session)"
+  },
+  "inquiries": [
+    {
+      "id": "inq-101",
+      "date": "2026-09-20 18:30",
+      "name": "Aman Verma",
+      "phone": "+91 98765 43210",
+      "plan": "12 Months — ₹6,999 (Best Value)",
+      "status": "New",
+      "message": "Looking for evening slot after 6 PM. Want coach guidance."
+    },
+    {
+      "id": "inq-102",
+      "date": "2026-09-20 14:15",
+      "name": "Saurabh Rai",
+      "phone": "+91 91234 56789",
+      "plan": "6 Months — ₹3,999",
+      "status": "Contacted",
+      "message": "Interested in strength training routine."
+    }
+  ],
+  "adminSettings": {
+    "username": "admin",
+    "passwordHash": "rdclub2026",
+    "lastLogin": null
+  }
+}

@@ -3,7 +3,7 @@
  * Full management logic for texts, media, plans, trainers, reviews & inquiries.
  */
 
-import { getCMSData, saveCMSData, resetCMSData } from './cms-sync.js';
+import { getCMSData, saveCMSData, resetCMSData, fetchCMSDataFromServer } from './cms-sync.js';
 
 class AdminController {
   constructor() {
@@ -24,13 +24,20 @@ class AdminController {
     this.init();
   }
 
-  init() {
+  async init() {
     this.bindAuthEvents();
 
     if (this.session) {
       this.showDashboard();
       this.initTabs();
       this.populateAllForms();
+
+      // Pull latest server changes from other devices
+      const cloudData = await fetchCMSDataFromServer();
+      if (cloudData && typeof cloudData === 'object') {
+        this.data = cloudData;
+        this.populateAllForms();
+      }
     } else {
       this.showAuthGate();
     }

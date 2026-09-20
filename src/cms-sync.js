@@ -44,20 +44,57 @@ export function getCMSData() {
   }
 }
 
+export async function fetchCMSDataFromServer() {
+  try {
+    const res = await fetch('/api/content', {
+      headers: { 'Accept': 'application/json' }
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const serverData = await res.json();
+    if (serverData && typeof serverData === 'object') {
+      try {
+        localStorage.setItem(CMS_STORAGE_KEY, JSON.stringify(serverData));
+      } catch (err) {
+        console.warn('[CMS Sync] Failed to update localStorage cache:', err);
+      }
+      renderPublicContent(serverData);
+      window.dispatchEvent(new CustomEvent('rd-cms-updated', { detail: serverData }));
+      return serverData;
+    }
+  } catch (err) {
+    console.log('[CMS Sync] Running offline or server unavailable, using local cache:', err.message);
+  }
+  return getCMSData();
+}
+
 export function saveCMSData(data) {
+  // 1. Save to local storage for immediate responsiveness
   try {
     localStorage.setItem(CMS_STORAGE_KEY, JSON.stringify(data));
     window.dispatchEvent(new CustomEvent('rd-cms-updated', { detail: data }));
-    return true;
   } catch (e) {
-    console.error('[CMS Sync] Save error:', e);
-    return false;
+    console.error('[CMS Sync] LocalStorage Save error:', e);
   }
+
+  // 2. Persist to shared backend server so all devices worldwide get the update
+  fetch('/api/content', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  }).then(res => {
+    if (!res.ok) console.warn('[CMS Sync] Server save returned HTTP', res.status);
+  }).catch(err => {
+    console.warn('[CMS Sync] Server save failed (saved locally only):', err.message);
+  });
+
+  return true;
 }
 
 export function resetCMSData() {
   localStorage.setItem(CMS_STORAGE_KEY, JSON.stringify(initialContent));
   window.dispatchEvent(new CustomEvent('rd-cms-updated', { detail: initialContent }));
+
+  fetch('/api/reset', { method: 'POST' }).catch(() => {});
   return JSON.parse(JSON.stringify(initialContent));
 }
 
@@ -74,16 +111,31 @@ export function addInquiry(lead) {
   };
   data.inquiries = [newLead, ...(data.inquiries || [])];
   saveCMSData(data);
+
+  fetch('/api/inquiries', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(newLead)
+  }).catch(() => {});
 }
 
 /**
  * Hydrates public index.html with live CMS content
  */
 export function initCMSSync() {
+  // 1. Instant local render (zero latency / offline first)
   const data = getCMSData();
   renderPublicContent(data);
 
-  // Re-render when changes happen in another tab or in admin
+  // 2. Fetch latest server state (updates changes made from any other device)
+  fetchCMSDataFromServer();
+
+  // 3. Periodic cloud polling every 20s so open tabs receive updates from other devices
+  setInterval(() => {
+    fetchCMSDataFromServer();
+  }, 20000);
+
+  // 4. Same-device cross-tab synchronization via StorageEvent
   window.addEventListener('storage', (e) => {
     if (e.key === CMS_STORAGE_KEY) {
       const updated = getCMSData();
@@ -91,6 +143,7 @@ export function initCMSSync() {
     }
   });
 
+  // Same-window dispatch event (triggered by admin updates in same tab)
   window.addEventListener('rd-cms-updated', (e) => {
     if (e.detail) renderPublicContent(e.detail);
   });
