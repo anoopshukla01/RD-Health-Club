@@ -4,6 +4,7 @@
  */
 
 import { initialContent } from './data/initial-content.js';
+import { renderReviews } from './components/reviews.js';
 
 export const CMS_STORAGE_KEY = 'rd_health_club_cms_data_v1';
 
@@ -186,6 +187,14 @@ function renderPublicContent(data) {
     const openDays = document.querySelector('.cms-timings-days');
     if (openDays) openDays.textContent = data.contact.openDays;
   }
+
+  // 7. Gallery — rebuild from CMS gallery array
+  if (Array.isArray(data.gallery)) {
+    renderGallerySection(data.gallery);
+  }
+
+  // 8. Reviews / Testimonials — render from CMS data
+  renderReviews(data.reviews);
 }
 
 /**
@@ -265,6 +274,47 @@ function updatePlanDropdowns(plans, pt) {
     optionsHtml.push(`<option value="General Trial Visit">General Trial Visit</option>`);
     contactSelect.innerHTML = optionsHtml.join('');
   }
+}
+
+/**
+ * Dynamically rebuilds the Gallery Masonry section from CMS gallery data
+ */
+function renderGallerySection(gallery) {
+  const container = document.querySelector('.gallery-masonry');
+  if (!container || !gallery.length) return;
+
+  container.innerHTML = gallery.map((item, i) => {
+    // First item gets a wider span for visual hierarchy
+    const colSpan = i === 0 ? 'col-span-8 row-span-2' : 'col-span-4';
+    return `
+      <div class="gallery-item ${colSpan}" data-full="${escapeHTML(item.url)}">
+        <img src="${escapeHTML(item.url)}" alt="${escapeHTML(item.title)}" loading="lazy" />
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-category">Gallery</div>
+          <h3 class="gallery-item-title">${escapeHTML(item.title)}</h3>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  // Re-wire lightbox click handlers after DOM rebuild
+  bindGalleryLightbox();
+}
+
+/**
+ * Binds lightbox click handlers to gallery items
+ */
+function bindGalleryLightbox() {
+  const lightbox = document.querySelector('.lightbox-modal');
+  const lightboxImg = document.querySelector('.lightbox-img');
+  if (!lightbox || !lightboxImg) return;
+
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('click', () => {
+      lightboxImg.src = item.dataset.full || '';
+      lightbox.style.display = 'flex';
+    });
+  });
 }
 
 /**

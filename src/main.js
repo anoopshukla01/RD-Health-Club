@@ -3,7 +3,7 @@ import { initScrollyLift } from './components/scrolly-lift.js';
 import { initNavbar } from './components/navbar.js';
 import { initEquipment } from './components/equipment.js';
 import { initStatsCounter } from './components/stats.js';
-import { renderReviews } from './components/reviews.js';
+// Reviews are now rendered by initCMSSync() from stored CMS data
 import { initSignatureCharacter } from './components/signature-character.js';
 import { initMotivation } from './components/motivation.js';
 import { initModals } from './components/modal.js';
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollyLift();
   initEquipment();
   initStatsCounter();
-  renderReviews();
+  // renderReviews() is now called inside initCMSSync() using live CMS data
   initSignatureCharacter();
   initMotivation();
   initModals();
