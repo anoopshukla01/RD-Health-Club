@@ -28,6 +28,7 @@
           <li class="nav-item"><a href="#hero">HOME</a></li>
           <li class="nav-item"><a href="#about">ABOUT</a></li>
           <li class="nav-item"><a href="#training">TRAINING</a></li>
+          <li class="nav-item"><a href="#trainers">TRAINERS</a></li>
           <li class="nav-item"><a href="#facilities">FACILITIES</a></li>
           <li class="nav-item"><a href="#membership">MEMBERSHIP</a></li>
           <li class="nav-item"><a href="#reviews">REVIEWS</a></li>
@@ -58,6 +59,7 @@
     <a href="#hero" class="mobile-nav-item">HOME</a>
     <a href="#about" class="mobile-nav-item">ABOUT</a>
     <a href="#training" class="mobile-nav-item">TRAINING</a>
+    <a href="#trainers" class="mobile-nav-item">TRAINERS</a>
     <a href="#facilities" class="mobile-nav-item">FACILITIES</a>
     <a href="#membership" class="mobile-nav-item">MEMBERSHIP</a>
     <a href="#reviews" class="mobile-nav-item">REVIEWS</a>
@@ -81,13 +83,13 @@
           <div class="hero-col-left">
             <!-- State 1: Initial View -->
             <div class="hero-copy-state hero-copy-initial">
-              <span class="hero-tagline-red">STRENGTH IN MOTION</span>
-              <h1 class="hero-cinema-title">
+              <span class="hero-tagline-red cms-hero-tag">STRENGTH IN MOTION</span>
+              <h1 class="hero-cinema-title cms-hero-title">
                 TRAIN HARDER.<br />
                 MOVE STRONGER.<br />
                 <span class="red-text">BECOME BETTER.</span>
               </h1>
-              <p class="hero-cinema-sub">More than a gym. A mindset.</p>
+              <p class="hero-cinema-sub cms-hero-sub">More than a gym. A mindset.</p>
               <div class="hero-cinema-ctas">
                 <button class="btn btn-primary trigger-join-modal" data-plan="12months">JOIN NOW</button>
                 <a href="#about" class="btn btn-outline">EXPLORE GYM</a>
@@ -409,6 +411,23 @@
               <button class="btn btn-primary trigger-join-modal" data-plan="pt">ENROLL PERSONAL TRAINING</button>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         ELITE TRAINERS & MENTORS SECTION (CMS-DRIVEN)
+    ========================================== -->
+    <section class="section-padding" id="trainers" style="background: #08080b;">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 48px;">
+          <span class="section-tag">Master Mentorship</span>
+          <h2 class="section-heading">ELITE <span class="red-text">TRAINERS & MENTORS</span></h2>
+          <p class="section-subheading" style="margin: 0 auto;">Personalized supervision from Gorakhpur's top competitive strength and conditioning coaches.</p>
+        </div>
+
+        <div id="trainers-grid-container" class="trainers-grid">
+          <!-- Dynamically populated via cms-sync.js -->
         </div>
       </div>
     </section>
@@ -871,10 +890,14 @@
           <li><a href="#contact">CONTACT</a></li>
         </ul>
 
-        <div>
+        <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
           <a href="https://www.instagram.com/rdhealthclub/" target="_blank" rel="noopener" class="social-pill-link">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
             <span>Instagram: @rdhealthclub</span>
+          </a>
+          <a href="/admin.html" target="_blank" class="social-pill-link" style="border-color: var(--red-primary); color: #ffffff;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            <span>Admin Portal</span>
           </a>
         </div>
       </div>

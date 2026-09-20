@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin CMS Control Portal — RD Health Club</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="/assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles/admin.css" />
+</head>
+<body class="admin-body">
+
+  <!-- =========================================
+       1. AUTH GATE (LOGIN SCREEN)
+  ========================================== -->
+  <div id="auth-gate" class="auth-gate-container">
+    <div class="auth-gate-card">
+      <img src="/assets/logo.png" alt="RD Health Club Logo" class="auth-brand-logo" />
+      <h1 class="auth-title">RD HEALTH CLUB</h1>
+      <p class="auth-subtitle">Executive CMS & Portal Authentication</p>
+
+      <div id="login-error" class="auth-error-msg"></div>
+
+      <form id="login-form">
+        <div class="form-group-admin" style="text-align: left;">
+          <label for="login-username" class="form-label-admin">ADMIN USERNAME</label>
+          <input type="text" id="login-username" class="form-input-admin" placeholder="admin" required autocomplete="username" />
+        </div>
+
+        <div class="form-group-admin" style="text-align: left;">
+          <label for="login-password" class="form-label-admin">PORTAL PASSWORD</label>
+          <input type="password" id="login-password" class="form-input-admin" placeholder="••••••••" required autocomplete="current-password" />
+        </div>
+
+        <button type="submit" class="btn-admin btn-admin-primary" style="width: 100%; margin-top: 10px; padding: 13px;">
+          ACCESS CONTROL PANEL
+        </button>
+      </form>
+      <div style="margin-top: 24px; font-size: 0.78rem; color: var(--admin-text-dim); font-family: var(--admin-font-mono);">
+        Default Admin: <strong>admin</strong> | Pass: <strong>rdclub2026</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================
+       2. DASHBOARD MAIN INTERFACE
+  ========================================== -->
+  <div id="admin-dashboard" style="display: none; flex-direction: column; min-height: 100vh;">
+    <!-- Top Navigation Bar -->
+    <header class="admin-navbar">
+      <div class="admin-nav-brand">
+        <img src="/assets/logo.png" alt="RD Health Club" class="admin-nav-logo" />
+        <span class="admin-nav-title">
+          RD HEALTH CLUB <span style="color: var(--admin-red);">CMS</span>
+        </span>
+        <span class="admin-badge-live">● SYSTEM ACTIVE</span>
+      </div>
+
+      <div class="admin-nav-actions">
+        <a href="/" target="_blank" class="btn-admin btn-admin-secondary btn-admin-sm">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          View Public Site
+        </a>
+        <button id="btn-logout" class="btn-admin btn-admin-danger btn-admin-sm">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          Logout
+        </button>
+      </div>
+    </header>
+
+    <!-- Layout: Sidebar + Viewport -->
+    <div class="admin-layout">
+      <!-- Sidebar Navigation Tabs -->
+      <aside class="admin-sidebar">
+        <div class="admin-tab-group-title">Leads & Inquiries</div>
+        <button class="admin-tab-btn active" data-tab="tab-inquiries">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          Inquiries & Leads
+          <span id="inquiries-badge-count" class="tab-badge">0</span>
+        </button>
+
+        <div class="admin-tab-group-title">Site Content</div>
+        <button class="admin-tab-btn" data-tab="tab-hero">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+          Hero & Brand Visuals
+        </button>
+
+        <button class="admin-tab-btn" data-tab="tab-about">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          About & Philosophy
+        </button>
+
+        <button class="admin-tab-btn" data-tab="tab-plans">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"></rect><line x1="6" y1="8" x2="10" y2="8"></line><line x1="6" y1="12" x2="14" y2="12"></line><line x1="6" y1="16" x2="18" y2="16"></line></svg>
+          Membership Plans
+        </button>
+
+        <button class="admin-tab-btn" data-tab="tab-trainers">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          Trainers & Mentors
+        </button>
+
+        <button class="admin-tab-btn" data-tab="tab-equipment">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          Facilities & Equipment
+        </button>
+
+        <button class="admin-tab-btn" data-tab="tab-gallery">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+          Photo Gallery
+        </button>
+
+        <button class="admin-tab-btn" data-tab="tab-reviews">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          Client Reviews
+        </button>
+
+        <button class="admin-tab-btn" data-tab="tab-contact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          Contact & Timings
+        </button>
+
+        <div class="admin-tab-group-title">System</div>
+        <button class="admin-tab-btn" data-tab="tab-settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          Settings & Backup
+        </button>
+      </aside>
+
+      <!-- Main Viewport Area -->
+      <main class="admin-viewport">
+
+        <!-- =========================================
+             TAB: INQUIRIES & LEADS
+        ========================================== -->
+        <section id="tab-inquiries" class="tab-pane active">
+          <div class="section-header-admin">
+            <div>
+              <h2 class="section-title-admin">LEAD & MEMBERSHIP INQUIRIES</h2>
+              <p class="section-desc-admin">Members who requested enrollment or contacted via WhatsApp & modal form.</p>
+            </div>
+          </div>
+
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Date & Time</th>
+                  <th>Member Name</th>
+                  <th>Phone Number</th>
+                  <th>Plan Interested</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="inquiries-table-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- =========================================
+             TAB: HERO & BRAND
+        ========================================== -->
+        <section id="tab-hero" class="tab-pane">
+          <div class="section-header-admin">
+            <div>
+              <h2 class="section-title-admin">HERO & BRAND VISUALS</h2>
+              <p class="section-desc-admin">Modify headlines, brand taglines, logos, and hero character visuals.</p>
+            </div>
+          </div>
+
+          <form id="form-hero-brand">
+            <div class="admin-grid-2">
+              <div class="admin-card">
+                <div class="admin-card-header">
+                  <h3 class="admin-card-title">Brand Identity</h3>
+                </div>
+                <div class="form-group-admin">
+                  <label class="form-label-admin">CLUB NAME</label>
+                  <input type="text" id="brand-name" class="form-input-admin" required />
+                </div>
+                <div class="form-group-admin">
+                  <label class="form-label-admin">MOTTO / SLOGAN</label>
+                  <input type="text" id="brand-motto" class="form-input-admin" required />
+                </div>
+                <div class="form-group-admin">
+                  <label class="form-label-admin">BRAND LOGO PHOTO</label>
+                  <div class="image-preview-box">
+                    <img id="preview-brand-logo" src="/assets/logo.png" alt="Logo Preview" />
+                  </div>
+                  <input type="file" id="input-brand-logo" class="form-input-admin" accept="image/*" />
+                </div>
+              </div>
+
+              <div class="admin-card">
+                <div class="admin-card-header">
+                  <h3 class="admin-card-title">Hero Section Visuals</h3>
+                </div>
+                <div class="form-group-admin">
+                  <label class="form-label-admin">HERO TAGLINE (EYEBROW)</label>
+                  <input type="text" id="hero-tag" class="form-input-admin" required />
+                </div>
+                <div class="form-group-admin">
+                  <label class="form-label-admin">MAIN HEADLINE (LINE 1)</label>
+                  <input type="text" id="hero-title-1" class="form-input-admin" required />
+                </div>
+                <div class="form-group-admin">
+                  <label class="form-label-admin">HIGHLIGHT HEADLINE (LINE 2)</label>
+                  <input type="text" id="hero-title-2" class="form-input-admin" required />
+                </div>
+                <div class="form-group-admin">
+                  <label class="form-label-admin">HERO CHARACTER IMAGE</label>
+                  <div class="image-preview-box">
+                    <img id="preview-hero-athlete" src="/assets/character_cutout.png" alt="Hero Cutout Preview" />
+                  </div>
+                  <input type="file" id="input-hero-athlete" class="form-input-admin" accept="image/*" />
+                </div>
+              </div>
+            </div>
+
+            <div class="admin-card">
+              <div class="form-group-admin">
+                <label class="form-label-admin">HERO SUBTITLE DESCRIPTION</label>
+                <textarea id="hero-sub" class="form-textarea-admin" rows="3" required></textarea>
+              </div>
+              <button type="submit" class="btn-admin btn-admin-primary">SAVE HERO & BRAND COPY</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- =========================================
+             TAB: ABOUT & PHILOSOPHY
+        ========================================== -->
+        <section id="tab-about" class="tab-pane">
+          <div class="section-header-admin">
+            <div>
+              <h2 class="section-title-admin">ABOUT & MASTER COACH PHILOSOPHY</h2>
+              <p class="section-desc-admin">Edit the gym's background story, coach philosophy, and facility overview.</p>
+            </div>
+          </div>
+
+          <form id="form-about">
+            <div class="admin-card">
+              <div class="form-group-admin">
+                <label class="form-label-admin">SECTION HEADLINE</label>
+                <input type="text" id="about-title" class="form-input-admin" required />
+              </div>
+
+              <div class="admin-grid-2">
+                <div class="form-group-admin">
+                  <label class="form-label-admin">COACH R.D. SINGH PHILOSOPHY QUOTE</label>
+                  <textarea id="about-quote" class="form-textarea-admin" rows="3" required></textarea>
+                </div>
+                <div class="form-group-admin">
+                  <label class="form-label-admin">QUOTE AUTHOR / CREDENTIALS</label>
+                  <input type="text" id="about-author" class="form-input-admin" required />
+                </div>
+              </div>
+
+              <div class="form-group-admin">
+                <label class="form-label-admin">STORY PARAGRAPH 1</label>
+                <textarea id="about-desc-1" class="form-textarea-admin" rows="3" required></textarea>
+              </div>
+
+              <div class="form-group-admin">
+                <label class="form-label-admin">STORY PARAGRAPH 2 (EQUIPMENT & ATMOSPHERE)</label>
+                <textarea id="about-desc-2" class="form-textarea-admin" rows="3" required></textarea>
+              </div>
+
+              <button type="submit" class="btn-admin btn-admin-primary">SAVE ABOUT & STORY</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- =========================================
+             TAB: MEMBERSHIP PLANS CRUD
+        ========================================== -->
+        <section id="tab-plans" class="tab-pane">
+          <div class="section-header-admin">
+            <div>
+              <h2 class="section-title-admin">MEMBERSHIP PRICING PLANS</h2>
+              <p class="section-desc-admin">Add, edit, or remove plans (1 Month, 3 Months, 6 Months, 12 Months, or Custom).</p>
+            </div>
+            <button id="btn-add-new-plan" class="btn-admin btn-admin-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Add New Plan
+            </button>
+          </div>
+
+          <div id="admin-plans-grid" class="admin-grid-4"></div>
+
+          <!-- Personal Training Standalone Banner Config -->
+          <div class="admin-card" style="margin-top: 36px;">
+            <div class="admin-card-header">
+              <h3 class="admin-card-title">1-on-1 Personal Training Banner</h3>
+            </div>
+            <form id="form-pt-banner">
+              <div class="admin-grid-2">
+                <div class="form-group-admin">
+                  <label class="form-label-admin">PT BANNER TITLE</label>
+                  <input type="text" id="pt-title" class="form-input-admin" required />
+                </div>
+                <div class="form-group-admin">
+                  <label class="form-label-admin">PT PRICE (₹)</label>
+                  <input type="text" id="pt-price" class="form-input-admin" required />
+                </div>
+              </div>
+              <div class="form-group-admin">
+                <label class="form-label-admin">PT DESCRIPTION COPY</label>
+                <textarea id="pt-desc" class="form-textarea-admin" rows="2" required></textarea>
+              </div>
+              <button type="submit" class="btn-admin btn-admin-secondary">SAVE PT BANNER</button>
+            </form>
+          </div>
+        </section>
+
+        <!-- =========================================
+             TAB: TRAINERS & COACHES CRUD
+        ========================================== -->
+        <section id="tab-trainers" class="tab-pane">
+          <div class="section-header-admin">
+            <div>
+              <h2 class="section-title-admin">TRAINERS & MENTORSHIP STAFF</h2>
+              <p class="section-desc-admin">Manage coach profiles, photos, qualifications, experience, and bios.</p>
+            </div>
+            <button id="btn-add-new-trainer" class="btn-admin btn-admin-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Add New Trainer
+            </button>
+          </div>
+
+          <div id="admin-trainers-grid" class="admin-grid-3"></div>
+        </section>
+
+        <!-- =========================================
+             TAB: FACILITIES & EQUIPMENT CRUD
+        ========================================== -->
+        <section id="tab-equipment" class="tab-pane">
+          <div class="section-header-admin">
+            <div>
+              <h2 class="section-title-admin">GYM EQUIPMENT & FACILITIES</h2>
+              <p class="section-desc-admin">Showcase Olympic racks, free weights, cardio stations, and cable machinery.</p>
+            </div>
+            <button id="btn-add-new-equipment" class="btn-admin btn-admin-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Add Equipment Station
+            </button>
+          </div>
+
+          <div id="admin-equipment-grid" class="admin-grid-4"></div>
+        </section>
+
+        <!-- =========================================
+             TAB: GALLERY CRUD
+        ========================================== -->
+        <section id="tab-gallery" class="tab-pane">
+          <div class="section-header-admin">
+            <div>
+              <h2 class="section-title-admin">GYM PHOTO GALLERY</h2>
+              <p class="section-desc-admin">Upload and organize facility images and training action shots.</p>
+            </div>
+            <button id="btn-add-new-gallery" class="btn-admin btn-admin-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Upload Photo
+            </button>
+          </div>
+
+          <div id="admin-gallery-grid" class="admin-grid-4"></div>
+        </section>
+
+        <!-- =========================================
+             TAB: REVIEWS CRUD
+        ========================================== -->
+        <section id="tab-reviews" class="tab-pane">
+          <div class="section-header-admin">
+            <div>
+              <h2 class="section-title-admin">CLIENT REVIEWS & TESTIMONIALS</h2>
+              <p class="section-desc-admin">Manage member feedback, star ratings, and real transformation stories.</p>
+            </div>
+            <button id="btn-add-new-review" class="btn-admin btn-admin-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Add Client Review
+            </button>
+          </div>
+
+          <div id="admin-reviews-grid" class="admin-grid-3"></div>
+        </section>
+
+        <!-- =========================================
+             TAB: CONTACT & TIMINGS
+        ========================================== -->
+        <section id="tab-contact" class="tab-pane">
+          <div class="section-header-admin">
+            <div>
+              <h2 class="section-title-admin">CONTACT INFO & GYM TIMINGS</h2>
+              <p class="section-desc-admin">Manage gym address, phone, WhatsApp number, and daily operational slots.</p>
+            </div>
+          </div>
+
+          <form id="form-contact">
+            <div class="admin-card">
+              <div class="form-group-admin">
+                <label class="form-label-admin">GYM ADDRESS</label>
+                <input type="text" id="contact-address" class="form-input-admin" required />
+              </div>
+
+              <div class="admin-grid-3">
+                <div class="form-group-admin">
+                  <label class="form-label-admin">PHONE NUMBER</label>
+                  <input type="text" id="contact-phone" class="form-input-admin" required />
+                </div>
+                <div class="form-group-admin">
+                  <label class="form-label-admin">WHATSAPP NUMBER</label>
+                  <input type="text" id="contact-whatsapp" class="form-input-admin" required />
+                </div>
+                <div class="form-group-admin">
+                  <label class="form-label-admin">CONTACT EMAIL</label>
+                  <input type="email" id="contact-email" class="form-input-admin" required />
+                </div>
+              </div>
+
+              <div class="admin-grid-3">
+                <div class="form-group-admin">
+                  <label class="form-label-admin">MORNING BATCH TIMINGS</label>
+                  <input type="text" id="contact-timings-morning" class="form-input-admin" required />
+                </div>
+                <div class="form-group-admin">
+                  <label class="form-label-admin">EVENING BATCH TIMINGS</label>
+                  <input type="text" id="contact-timings-evening" class="form-input-admin" required />
+                </div>
+                <div class="form-group-admin">
+                  <label class="form-label-admin">OPENING DAYS</label>
+                  <input type="text" id="contact-open-days" class="form-input-admin" required />
+                </div>
+              </div>
+
+              <button type="submit" class="btn-admin btn-admin-primary">SAVE CONTACT & HOURS</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- =========================================
+             TAB: SETTINGS & BACKUP
+        ========================================== -->
+        <section id="tab-settings" class="tab-pane">
+          <div class="section-header-admin">
+            <div>
+              <h2 class="section-title-admin">PORTAL SETTINGS & DATABASE BACKUP</h2>
+              <p class="section-desc-admin">Change your admin login credentials, export JSON backup, or restore site data.</p>
+            </div>
+          </div>
+
+          <div class="admin-grid-2">
+            <!-- Change Password Card -->
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <h3 class="admin-card-title">Change Admin Password</h3>
+              </div>
+              <form id="form-change-password">
+                <div class="form-group-admin">
+                  <label class="form-label-admin">CURRENT PASSWORD</label>
+                  <input type="password" id="pw-current" class="form-input-admin" required />
+                </div>
+                <div class="form-group-admin">
+                  <label class="form-label-admin">NEW PASSWORD (MIN 6 CHARS)</label>
+                  <input type="password" id="pw-new" class="form-input-admin" required minlength="6" />
+                </div>
+                <div class="form-group-admin">
+                  <label class="form-label-admin">CONFIRM NEW PASSWORD</label>
+                  <input type="password" id="pw-confirm" class="form-input-admin" required minlength="6" />
+                </div>
+                <button type="submit" class="btn-admin btn-admin-primary">UPDATE PASSWORD</button>
+              </form>
+            </div>
+
+            <!-- Backup & Restore Card -->
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <h3 class="admin-card-title">Database Export & Restore</h3>
+              </div>
+              <p style="font-size: 0.88rem; color: var(--admin-text-muted); margin-bottom: 20px;">
+                Download a complete JSON snapshot of all your texts, plans, trainers, and reviews. You can restore this file on any device or browser anytime.
+              </p>
+
+              <div style="display: flex; flex-direction: column; gap: 14px;">
+                <button id="btn-download-backup" class="btn-admin btn-admin-secondary">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  Export & Download JSON Backup
+                </button>
+
+                <input type="file" id="backup-file-input" accept=".json" style="display: none;" />
+                <button id="btn-restore-backup" class="btn-admin btn-admin-secondary">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                  Restore From JSON Backup File
+                </button>
+
+                <hr style="border: 0; border-top: 1px solid var(--admin-border); margin: 8px 0;" />
+
+                <button id="btn-reset-factory" class="btn-admin btn-admin-danger btn-admin-sm">
+                  Reset Content to Factory Defaults
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL: MEMBERSHIP PLAN ADD / EDIT
+  ========================================================================= -->
+  <dialog id="modal-plan" class="admin-modal">
+    <div class="modal-header-admin">
+      <h3 id="plan-modal-title" class="modal-title-admin">Membership Plan</h3>
+      <button class="modal-close-btn-admin">&times;</button>
+    </div>
+    <form id="form-plan-modal">
+      <input type="hidden" id="plan-id" />
+      <div class="admin-grid-2">
+        <div class="form-group-admin">
+          <label class="form-label-admin">PLAN TITLE</label>
+          <input type="text" id="plan-title" class="form-input-admin" placeholder="e.g. 3 MONTHS" required />
+        </div>
+        <div class="form-group-admin">
+          <label class="form-label-admin">PRICE (₹)</label>
+          <input type="text" id="plan-price" class="form-input-admin" placeholder="e.g. 2,499" required />
+        </div>
+      </div>
+
+      <div class="admin-grid-2">
+        <div class="form-group-admin">
+          <label class="form-label-admin">SUBTITLE</label>
+          <input type="text" id="plan-subtitle" class="form-input-admin" placeholder="e.g. Quarterly Focus" />
+        </div>
+        <div class="form-group-admin">
+          <label class="form-label-admin">BADGE TEXT (OPTIONAL)</label>
+          <input type="text" id="plan-badge" class="form-input-admin" placeholder="e.g. BEST VALUE or POPULAR" />
+        </div>
+      </div>
+
+      <div class="form-group-admin">
+        <label class="form-label-admin">PLAN DURATION LABEL</label>
+        <input type="text" id="plan-duration" class="form-input-admin" placeholder="e.g. 3 Months" />
+      </div>
+
+      <div class="form-group-admin" style="display: flex; align-items: center; gap: 10px; margin: 12px 0;">
+        <input type="checkbox" id="plan-featured" style="width: 18px; height: 18px; accent-color: var(--admin-red);" />
+        <label for="plan-featured" style="font-size: 0.9rem; color: #fff; cursor: pointer;">
+          Mark as Featured / Highlighted Plan
+        </label>
+      </div>
+
+      <div class="form-group-admin">
+        <label class="form-label-admin">FEATURES LIST (ONE PER LINE)</label>
+        <textarea id="plan-features" class="form-textarea-admin" rows="5" required></textarea>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+        <button type="button" class="btn-admin btn-admin-secondary btn-close-modal">Cancel</button>
+        <button type="submit" class="btn-admin btn-admin-primary">Save Plan</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- =========================================================================
+       MODAL: TRAINER ADD / EDIT
+  ========================================================================= -->
+  <dialog id="modal-trainer" class="admin-modal">
+    <div class="modal-header-admin">
+      <h3 id="trainer-modal-title" class="modal-title-admin">Trainer Profile</h3>
+      <button class="modal-close-btn-admin">&times;</button>
+    </div>
+    <form id="form-trainer-modal">
+      <input type="hidden" id="trainer-id" />
+      <input type="hidden" id="trainer-image-val" />
+
+      <div class="admin-grid-2">
+        <div class="form-group-admin">
+          <label class="form-label-admin">FULL NAME</label>
+          <input type="text" id="trainer-name" class="form-input-admin" required />
+        </div>
+        <div class="form-group-admin">
+          <label class="form-label-admin">ROLE / DESIGNATION</label>
+          <input type="text" id="trainer-role" class="form-input-admin" placeholder="e.g. Master Strength Coach" required />
+        </div>
+      </div>
+
+      <div class="admin-grid-2">
+        <div class="form-group-admin">
+          <label class="form-label-admin">SPECIALIZATION</label>
+          <input type="text" id="trainer-specialty" class="form-input-admin" placeholder="e.g. Powerlifting & Hypertrophy" />
+        </div>
+        <div class="form-group-admin">
+          <label class="form-label-admin">EXPERIENCE</label>
+          <input type="text" id="trainer-exp" class="form-input-admin" placeholder="e.g. 6+ Years" />
+        </div>
+      </div>
+
+      <div class="form-group-admin">
+        <label class="form-label-admin">CERTIFICATIONS & ACCOLADES</label>
+        <input type="text" id="trainer-certs" class="form-input-admin" placeholder="e.g. Gold Medalist • K11 Certified" />
+      </div>
+
+      <div class="form-group-admin">
+        <label class="form-label-admin">TRAINER PHOTO</label>
+        <div class="image-preview-box" style="height: 140px;">
+          <img id="trainer-img-preview" src="/assets/trainer_rd_singh.jpg" alt="Trainer Preview" />
+        </div>
+        <input type="file" id="input-trainer-file" class="form-input-admin" accept="image/*" />
+      </div>
+
+      <div class="form-group-admin">
+        <label class="form-label-admin">BIOGRAPHY / BACKGROUND</label>
+        <textarea id="trainer-bio" class="form-textarea-admin" rows="3"></textarea>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+        <button type="button" class="btn-admin btn-admin-secondary btn-close-modal">Cancel</button>
+        <button type="submit" class="btn-admin btn-admin-primary">Save Trainer</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- =========================================================================
+       MODAL: EQUIPMENT ADD / EDIT
+  ========================================================================= -->
+  <dialog id="modal-equipment" class="admin-modal">
+    <div class="modal-header-admin">
+      <h3 class="modal-title-admin">Equipment Station</h3>
+      <button class="modal-close-btn-admin">&times;</button>
+    </div>
+    <form id="form-equipment-modal">
+      <input type="hidden" id="equip-id" />
+      <input type="hidden" id="equip-image-val" />
+
+      <div class="form-group-admin">
+        <label class="form-label-admin">EQUIPMENT / ZONE NAME</label>
+        <input type="text" id="equip-name" class="form-input-admin" required />
+      </div>
+
+      <div class="form-group-admin">
+        <label class="form-label-admin">PHOTO</label>
+        <div class="image-preview-box" style="height: 140px;">
+          <img id="equip-img-preview" src="/assets/equipment_weights.jpg" alt="Equip Preview" />
+        </div>
+        <input type="file" id="input-equip-file" class="form-input-admin" accept="image/*" />
+      </div>
+
+      <div class="form-group-admin">
+        <label class="form-label-admin">SPECIFICATIONS & DETAILS</label>
+        <textarea id="equip-desc" class="form-textarea-admin" rows="3" required></textarea>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+        <button type="button" class="btn-admin btn-admin-secondary btn-close-modal">Cancel</button>
+        <button type="submit" class="btn-admin btn-admin-primary">Save Equipment</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- =========================================================================
+       MODAL: GALLERY PHOTO UPLOAD
+  ========================================================================= -->
+  <dialog id="modal-gallery" class="admin-modal">
+    <div class="modal-header-admin">
+      <h3 class="modal-title-admin">Upload Gallery Photo</h3>
+      <button class="modal-close-btn-admin">&times;</button>
+    </div>
+    <form id="form-gallery-modal">
+      <input type="hidden" id="gallery-image-val" />
+      <div class="form-group-admin">
+        <label class="form-label-admin">PHOTO CAPTION / TITLE</label>
+        <input type="text" id="gallery-modal-title" class="form-input-admin" placeholder="e.g. Olympic Lifting Platform" required />
+      </div>
+      <div class="form-group-admin">
+        <label class="form-label-admin">SELECT IMAGE FILE</label>
+        <div class="image-preview-box" style="height: 140px;">
+          <img id="gallery-img-preview" src="" alt="Gallery Preview" />
+        </div>
+        <input type="file" id="input-gallery-file" class="form-input-admin" accept="image/*" required />
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+        <button type="button" class="btn-admin btn-admin-secondary btn-close-modal">Cancel</button>
+        <button type="submit" class="btn-admin btn-admin-primary">Add to Gallery</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- =========================================================================
+       MODAL: REVIEW ADD
+  ========================================================================= -->
+  <dialog id="modal-review" class="admin-modal">
+    <div class="modal-header-admin">
+      <h3 class="modal-title-admin">Add Client Testimonial</h3>
+      <button class="modal-close-btn-admin">&times;</button>
+    </div>
+    <form id="form-review-modal">
+      <div class="admin-grid-2">
+        <div class="form-group-admin">
+          <label class="form-label-admin">CLIENT NAME</label>
+          <input type="text" id="rev-name" class="form-input-admin" required />
+        </div>
+        <div class="form-group-admin">
+          <label class="form-label-admin">ROLE / ACHIEVEMENT</label>
+          <input type="text" id="rev-role" class="form-input-admin" placeholder="e.g. Member for 1 Year" required />
+        </div>
+      </div>
+      <div class="form-group-admin">
+        <label class="form-label-admin">STAR RATING (1 - 5)</label>
+        <select id="rev-rating" class="form-select-admin">
+          <option value="5">★★★★★ 5 Stars</option>
+          <option value="4">★★★★☆ 4 Stars</option>
+          <option value="3">★★★☆☆ 3 Stars</option>
+        </select>
+      </div>
+      <div class="form-group-admin">
+        <label class="form-label-admin">TESTIMONIAL TEXT</label>
+        <textarea id="rev-comment" class="form-textarea-admin" rows="4" required></textarea>
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+        <button type="button" class="btn-admin btn-admin-secondary btn-close-modal">Cancel</button>
+        <button type="submit" class="btn-admin btn-admin-primary">Add Review</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Notification Toast -->
+  <div id="admin-toast">Action Completed</div>
+
+  <!-- Entry Script -->
+  <script type="module" src="/src/admin.js"></script>
+</body>
+</html>

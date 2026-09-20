@@ -7,8 +7,12 @@ import { renderReviews } from './components/reviews.js';
 import { initSignatureCharacter } from './components/signature-character.js';
 import { initMotivation } from './components/motivation.js';
 import { initModals } from './components/modal.js';
+import { initCMSSync, addInquiry } from './cms-sync.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize CMS synchronization first
+  initCMSSync();
+
   // Initialize all interactive components
   initNavbar();
   initCharacter3D();
@@ -29,6 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const phone = document.getElementById('inq-phone')?.value || '';
       const interest = document.getElementById('inq-interest')?.value || '';
       const msg = document.getElementById('inq-msg')?.value || '';
+
+      // Log lead to CMS
+      addInquiry({ name, phone, plan: interest, message: msg });
 
       const text = encodeURIComponent(
         `Hello Mr. R.D. Singh,\nI would like to inquire about RD Health Club.\nName: ${name}\nPhone: ${phone}\nInterest: ${interest}\nMessage: ${msg}`

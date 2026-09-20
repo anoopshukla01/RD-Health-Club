@@ -1,4 +1,5 @@
 import confetti from 'canvas-confetti';
+import { addInquiry } from '../cms-sync.js';
 
 export function initModals() {
   const dialog = document.querySelector('dialog.app-modal');
@@ -49,6 +50,9 @@ export function initModals() {
       const name = document.getElementById('modal-name')?.value || '';
       const phone = document.getElementById('modal-phone')?.value || '';
       const plan = planSelect?.options[planSelect.selectedIndex]?.text || 'Membership';
+
+      // Log lead to CMS
+      addInquiry({ name, phone, plan, message: 'Submitted via Enrollment Modal' });
 
       // Trigger celebratory confetti
       confetti({

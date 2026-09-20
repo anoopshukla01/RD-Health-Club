@@ -2362,3 +2362,133 @@ dialog.app-modal::backdrop {
 .mobile-nav-item:hover {
   color: var(--red-primary);
 }
+
+/* =========================================
+   DYNAMIC TRAINERS & MENTORS SECTION
+========================================= */
+.trainers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 40px;
+}
+
+.trainer-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition-smooth);
+}
+
+.trainer-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--red-primary);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 24px var(--red-glow);
+}
+
+.trainer-card-img-wrap {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+  background: #000;
+}
+
+.trainer-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.trainer-card:hover .trainer-card-img {
+  transform: scale(1.05);
+}
+
+.trainer-exp-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(10, 10, 14, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--red-primary);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.trainer-card-body {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.trainer-role {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--red-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 6px;
+}
+
+.trainer-name {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  color: #ffffff;
+  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+}
+
+.trainer-specialty {
+  font-size: 0.92rem;
+  color: var(--text-dim);
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+
+.trainer-bio {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+.trainer-cert-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 31, 36, 0.08);
+  border: 1px solid rgba(255, 31, 36, 0.2);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.trainer-cert-tag svg {
+  color: var(--red-primary);
+}
+
+@media (max-width: 1024px) {
+  .trainers-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .trainers-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
