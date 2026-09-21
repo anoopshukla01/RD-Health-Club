@@ -17,7 +17,11 @@ app.use(express.json({ limit: '25mb' }));
 app.use(express.urlencoded({ extended: true, limit: '25mb' }));
 
 // Ensure data storage directory exists
-const DATA_DIR = resolve(__dirname, 'data');
+// On Render with persistent disk, the disk is mounted at /opt/render/project/src/data
+const RENDER_DISK = '/opt/render/project/src/data';
+const DATA_DIR = process.env.NODE_ENV === 'production' && fs.existsSync('/opt/render/project/src')
+  ? RENDER_DISK
+  : resolve(__dirname, 'data');
 const DATA_FILE = join(DATA_DIR, 'cms-content.json');
 
 function ensureDataFile() {

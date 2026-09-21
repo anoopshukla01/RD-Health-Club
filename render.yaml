@@ -1,10 +1,15 @@
 services:
   - type: web
     name: rd-health-club
-    runtime: static
+    runtime: node
     buildCommand: npm install && npm run build
-    staticPublishPath: dist
-    routes:
-      - type: rewrite
-        source: /admin
-        destination: /admin.html
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+    disk:
+      name: cms-data
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1
